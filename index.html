@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Georgi Chertkov — Creative Developer & Founder</title>
+<meta name="description" content="Georgi Chertkov builds digital products at the intersection of climate science and travel — founder of NomadSwipe, developer of platforms for University of Arizona agrivoltaics research.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230A0B08'/><text x='50' y='68' font-size='52' font-family='Arial Black' font-weight='900' fill='%23C9F24F' text-anchor='middle'>G</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+  /* ===== landing specific ===== */
+  .hero{height:100svh;min-height:640px;position:relative;display:flex;align-items:flex-end;overflow:hidden}
+  #topo-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .hero-inner{position:relative;z-index:2;width:100%;padding:0 var(--pad) clamp(2.2rem,6vh,4.5rem)}
+  .hero-title{font-size:clamp(3.2rem,12.5vw,11.5rem);line-height:.92}
+  .hero-title .row{display:block;overflow:hidden}
+  .hero-title .row span{display:inline-block;transform:translateY(112%);animation:heroUp 1.1s var(--ease-exp) forwards}
+  .hero-title .row:nth-child(2) span{animation-delay:.12s}
+  @keyframes heroUp{to{transform:translateY(0)}}
+  .hero-sub{
+    display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;
+    margin-top:2.2rem;padding-top:1.6rem;border-top:1px solid var(--line);
+  }
+  .hero-role{font-family:var(--font-mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim);display:flex;gap:.8rem;align-items:center}
+  .role-swap{color:var(--lime);position:relative;display:inline-block;min-width:21ch}
+  .role-swap i{font-style:normal;position:absolute;left:0;top:0;opacity:0;transform:translateY(60%);transition:.5s var(--ease-exp)}
+  .role-swap i.on{opacity:1;transform:translateY(0)}
+  .role-swap i.out{opacity:0;transform:translateY(-60%)}
+  .hero-meta{font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);display:flex;gap:2.4rem;flex-wrap:wrap}
+  .scroll-cue{display:flex;align-items:center;gap:.7rem;color:var(--mut);font-family:var(--font-mono);font-size:11px;letter-spacing:.2em}
+  .scroll-cue .wheel{width:1px;height:44px;background:var(--line);position:relative;overflow:hidden}
+  .scroll-cue .wheel::after{content:'';position:absolute;top:-40%;left:0;width:100%;height:40%;background:var(--lime);animation:cue 1.8s var(--ease-exp) infinite}
+  @keyframes cue{to{top:110%}}
+  .hero-corner{position:absolute;z-index:2;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.22em;color:var(--mut);text-transform:uppercase}
+  .hc-tl{top:6.4rem;left:var(--pad)}
+  .hc-tr{top:6.4rem;right:var(--pad);text-align:right}
+
+  /* manifesto */
+  .manifesto p{font-family:var(--font-display);font-weight:700;font-size:clamp(1.7rem,4.4vw,3.5rem);line-height:1.18;letter-spacing:-.015em;max-width:22ch}
+  .manifesto .accent-row{display:flex;gap:1.4rem;align-items:center;margin-top:3rem;flex-wrap:wrap}
+
+  /* selected work */
+  .work-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:3.5rem}
+  .work-list{display:flex;flex-direction:column;gap:clamp(3.5rem,8vh,6rem)}
+  .work-item{display:grid;grid-template-columns:1fr 1.35fr;gap:clamp(1.6rem,4vw,4rem);align-items:center;border-top:1px solid var(--line);padding-top:2.6rem}
+  .work-item:nth-child(even){grid-template-columns:1.35fr 1fr}
+  .work-item:nth-child(even) .work-info{order:2}
+  .work-idx{font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;color:var(--lime);margin-bottom:1rem}
+  .work-name{font-family:var(--font-display);font-weight:800;font-size:clamp(1.9rem,4vw,3.2rem);letter-spacing:-.02em;text-transform:uppercase;line-height:1;margin-bottom:1.1rem}
+  .work-desc{color:var(--ink-dim);max-width:44ch;margin-bottom:1.4rem}
+  .work-media{position:relative}
+  .work-media::after{content:attr(data-tag);position:absolute;top:-13px;right:18px;background:var(--lime);color:#0A0B08;font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:.35rem .8rem;border-radius:99px}
+
+  /* nomad banner */
+  .nomad-banner{
+    background:linear-gradient(160deg,#171008 0%,#0A0B08 55%);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    position:relative;overflow:hidden;
+  }
+  .nomad-banner::before{
+    content:'';position:absolute;width:60vw;height:60vw;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,106,61,.16),transparent 65%);
+    top:-25vw;right:-18vw;pointer-events:none;
+  }
+  .nomad-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center}
+  .deck-visual{position:relative;height:480px;display:flex;align-items:center;justify-content:center}
+  .deck-card{
+    position:absolute;width:min(300px,72%);aspect-ratio:3/4.1;border-radius:22px;
+    border:1px solid var(--line);padding:1.4rem;display:flex;flex-direction:column;justify-content:flex-end;gap:.3rem;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,.75);
+  }
+  .deck-card .dc-cat{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+  .deck-card .dc-name{font-family:var(--font-display);font-weight:700;font-size:1.5rem}
+  .deck-card .dc-meta{font-family:var(--font-mono);font-size:11px;color:rgba(255,255,255,.7)}
+  .deck-card.c1{background:linear-gradient(160deg,#3d2b1a,#171008);transform:rotate(-9deg) translate(-52px,10px)}
+  .deck-card.c2{background:linear-gradient(160deg,#1c2a12,#0d120a);transform:rotate(6deg) translate(46px,-8px)}
+  .deck-card.c3{background:linear-gradient(160deg,#2a1408,#120a05);transform:rotate(-1deg) scale(1.05);border-color:rgba(255,106,61,.5)}
+  .deck-float{animation:float 6s ease-in-out infinite}
+  @keyframes float{50%{translate:0 -14px}}
+  .swipe-badge{
+    position:absolute;bottom:8%;left:50%;transform:translateX(-50%);
+    font-family:var(--font-mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+    border:1px solid var(--line);border-radius:99px;padding:.5rem 1.1rem;background:rgba(10,11,8,.7);backdrop-filter:blur(6px);
+  }
+
+  /* capabilities */
+  .cap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-2);border:1px solid var(--line-2)}
+  .cap{background:var(--bg);padding:2rem 1.6rem;transition:background .4s}
+  .cap:hover{background:var(--panel)}
+  .cap .num{font-family:var(--font-mono);font-size:11px;color:var(--lime);letter-spacing:.2em}
+  .cap h3{font-family:var(--font-display);font-weight:700;font-size:1.25rem;margin:.9rem 0 .7rem;text-transform:uppercase;letter-spacing:-.01em}
+  .cap p{font-size:.9rem;color:var(--mut);line-height:1.55}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:clamp(3rem,8vh,5.5rem)}
+  .stat .n{font-family:var(--font-display);font-weight:800;font-size:clamp(2.6rem,6vw,4.6rem);color:var(--lime);line-height:1}
+  .stat .t{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin-top:.6rem}
+
+  @media(max-width:900px){
+    .work-item,.work-item:nth-child(even){grid-template-columns:1fr}
+    .work-item:nth-child(even) .work-info{order:0}
+    .nomad-grid{grid-template-columns:1fr}
+    .deck-visual{height:420px}
+    .cap-grid{grid-template-columns:1fr 1fr}
+    .stats{grid-template-columns:1fr 1fr}
+    .hero-corner{display:none}
+  }
+  @media(max-width:560px){.cap-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- preloader -->
+<div class="preloader" id="preloader">
+  <div class="pre-name" id="preName"></div>
+  <div class="pre-tag">Portfolio — v2026</div>
+  <div class="pre-count" id="preCount">00</div>
+  <div class="pre-bar" id="preBar"></div>
+</div>
+
+<!-- nav -->
+<header class="nav">
+  <a href="index.html" class="nav-logo"><span class="dot"></span>GC<span style="font-family:var(--font-mono);font-size:10px;color:var(--lime)">©26</span></a>
+  <nav class="nav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="work.html">Work</a>
+    <a href="nomadswipe.html">NomadSwipe</a>
+    <a href="resume.html">Resume</a>
+    <a href="about.html">About</a>
+  </nav>
+  <button class="nav-burger" aria-label="menu"><i></i><i></i></button>
+</header>
+<div class="menu-overlay">
+  <a href="index.html">Home<small>01</small></a>
+  <a href="work.html">Work<small>02</small></a>
+  <a href="nomadswipe.html">NomadSwipe<small>03</small></a>
+  <a href="resume.html">Resume<small>04</small></a>
+  <a href="about.html">About<small>05</small></a>
+  <div class="menu-meta">georgichertkov@gmail.com — Tucson AZ / Remote</div>
+</div>
+
+<main class="page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <canvas id="topo-canvas"></canvas>
+    <div class="hero-corner hc-tl">32.2226° N, 110.9747° W<br>Tucson — Worldwide</div>
+    <div class="hero-corner hc-tr">Available for<br>select projects</div>
+    <div class="hero-inner">
+      <h1 class="h-display hero-title">
+        <span class="row"><span>Georgi</span></span>
+        <span class="row"><span class="outline">Chertkov</span></span>
+      </h1>
+      <div class="hero-sub">
+        <div class="hero-role">
+          <span>Creative Developer</span>
+          <span style="color:var(--mut)">/</span>
+          <span class="role-swap" id="roleSwap">
+            <i class="on">Founder, NomadSwipe</i>
+            <i>Climate-tech builder</i>
+            <i>Map obsessive</i>
+            <i>Full-stack engineer</i>
+          </span>
+        </div>
+        <div class="scroll-cue"><span class="wheel"></span>Scroll</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>Product Engineering</span><span>Creative Development</span><span>Climate Tech</span><span>Travel Tech</span><span>Data Visualization</span><span>Interactive Maps</span>
+    </div>
+  </div>
+
+  <!-- MANIFESTO -->
+  <section class="section wrap manifesto">
+    <span class="label" data-reveal>The short version</span>
+    <p class="word-reveal" style="margin-top:1.8rem">I turn complex problems into products people actually enjoy using — from carbon-offset cartography to swipe-based travel planning.</p>
+    <div class="accent-row" data-reveal>
+      <a class="btn" href="about.html" data-magnetic="0.25">My story <span class="arr">→</span></a>
+      <a class="link-arrow" href="resume.html">View resume <span class="arr">↗</span></a>
+    </div>
+  </section>
+
+  <!-- SELECTED WORK -->
+  <section class="section wrap">
+    <div class="work-head">
+      <div>
+        <span class="label" data-reveal>Selected work</span>
+        <h2 class="h-display h-lg" data-reveal style="margin-top:.8rem">Things I've<br><span class="outline">Built</span></h2>
+      </div>
+      <a class="btn" href="work.html" data-magnetic="0.25" data-reveal>All projects <span class="arr">→</span></a>
+    </div>
+
+    <div class="work-list">
+      <article class="work-item" data-reveal>
+        <div class="work-info">
+          <div class="work-idx">01 / Consumer App — Live on Google Play</div>
+          <h3 class="work-name">Nomad<span class="org">Swipe</span></h3>
+          <p class="work-desc">Swipe-based travel planning for groups. A recommendation engine that learns your taste down to the exact cuisine, then plots every save onto a shared trip map.</p>
+          <div class="tags" style="margin-bottom:1.6rem"><span class="tag">React Native</span><span class="tag">Reco Engine</span><span class="tag">Maps</span></div>
+          <a class="link-arrow" href="nomadswipe.html" data-cursor="Open">Case study <span class="arr">↗</span></a>
+        </div>
+        <div class="work-media" data-tag="Flagship">
+          <div class="browser" data-tilt>
+            <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">nomadswipe.com</span></div>
+            <div class="browser-shot"><img src="assets/img/nomadswipe.jpg" alt="NomadSwipe landing page"></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="work-item" data-reveal>
+        <div class="work-info">
+          <div class="work-idx">02 / Research Platform — University of Arizona</div>
+          <h3 class="work-name">SALSAV</h3>
+          <p class="work-desc">Digital home of the Semi-arid Lab for Scaling Agrivoltaics — interactive research visualizations, learning labs and data storytelling for the food-energy-water nexus.</p>
+          <div class="tags" style="margin-bottom:1.6rem"><span class="tag">Data Viz</span><span class="tag">Interactive</span><span class="tag">Education</span></div>
+          <a class="link-arrow" href="work.html" data-cursor="View">See the work <span class="arr">↗</span></a>
+        </div>
+        <div class="work-media" data-tag="Climate">
+          <div class="browser" data-tilt>
+            <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">salsav.org</span></div>
+            <div class="browser-shot"><img src="assets/img/salsav.jpg" alt="SALSAV Agrivoltaics website"></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="work-item" data-reveal>
+        <div class="work-info">
+          <div class="work-idx">03 / Community Platform — Bilingual EN/ES</div>
+          <h3 class="work-name">AV sin Fronteras</h3>
+          <p class="work-desc">A participatory seminar platform connecting agrivoltaics researchers across the Americas — schedule, archive, scholar network and forum for five partner institutions.</p>
+          <div class="tags" style="margin-bottom:1.6rem"><span class="tag">Full-stack</span><span class="tag">i18n</span><span class="tag">Community</span></div>
+          <a class="link-arrow" href="work.html" data-cursor="View">See the work <span class="arr">↗</span></a>
+        </div>
+        <div class="work-media" data-tag="Platform">
+          <div class="browser" data-tilt>
+            <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">avsinfronteras.org</span></div>
+            <div class="browser-shot"><img src="assets/img/avs.jpg" alt="Agrovoltaicos sin Fronteras platform"></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- NOMADSWIPE BANNER -->
+  <section class="section nomad-banner">
+    <div class="wrap nomad-grid">
+      <div>
+        <span class="label" data-reveal style="color:var(--org)">Founder project</span>
+        <h2 class="h-display h-lg" data-reveal style="margin:.9rem 0 1.4rem">Swipe it.<br>Map it. <span class="org">Go.</span></h2>
+        <p class="lead" data-reveal>NomadSwipe kills the 14-open-tabs era of trip planning. Rank your vibes, swipe a curated deck, and watch every save auto-plot onto a shared group map. Built end-to-end — from the recommendation engine to the app on Google Play.</p>
+        <div class="accent-row" data-reveal style="margin-top:2.2rem;display:flex;gap:1.2rem;flex-wrap:wrap">
+          <a class="btn orange" href="nomadswipe.html" data-magnetic="0.25">Explore NomadSwipe <span class="arr">→</span></a>
+          <a class="btn" href="https://play.google.com/store/apps/details?id=com.gchertkov.SwipeNomad" target="_blank" rel="noopener" data-magnetic="0.25">Google Play <span class="arr">↗</span></a>
+        </div>
+      </div>
+      <div class="deck-visual" data-reveal="scale">
+        <div class="deck-card c1 deck-float" style="animation-delay:.6s">
+          <span class="dc-cat">Nightlife</span><span class="dc-name">Golden Tiki</span><span class="dc-meta">★ 4.5 — 2.3 km</span>
+        </div>
+        <div class="deck-card c2 deck-float" style="animation-delay:1.2s">
+          <span class="dc-cat">Café</span><span class="dc-name">Slow Pour</span><span class="dc-meta">★ 4.8 — 900 m</span>
+        </div>
+        <div class="deck-card c3 deck-float">
+          <span class="dc-cat" style="color:var(--org)">Restaurant</span><span class="dc-name">Hard Rock Stay</span><span class="dc-meta">★ 4.7 — 1.2 km</span>
+        </div>
+        <div class="swipe-badge">Drag the demo on the NomadSwipe page →</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section class="section wrap">
+    <span class="label" data-reveal>What I do</span>
+    <h2 class="h-display h-md" data-reveal style="margin:.9rem 0 3rem">Full-stack, full-picture</h2>
+    <div class="cap-grid" data-stagger>
+      <div class="cap"><div class="num">/01</div><h3>Product Engineering</h3><p>From zero to shipped — architecture, APIs, mobile and web apps that survive real users.</p></div>
+      <div class="cap"><div class="num">/02</div><h3>Creative Front-end</h3><p>WebGL, motion design and interaction details that make products feel alive.</p></div>
+      <div class="cap"><div class="num">/03</div><h3>Data & Maps</h3><p>Geospatial interfaces, recommendation logic and visualizations that make data legible.</p></div>
+      <div class="cap"><div class="num">/04</div><h3>Climate Domain</h3><p>A decade in environmental science — I speak researcher, not just developer.</p></div>
+    </div>
+
+    <div class="stats" data-stagger>
+      <div class="stat"><div class="n"><span data-count="6">0</span>+</div><div class="t">Years building</div></div>
+      <div class="stat"><div class="n"><span data-count="10">0</span>+</div><div class="t">Products shipped</div></div>
+      <div class="stat"><div class="n"><span data-count="5">0</span></div><div class="t">Partner institutions</div></div>
+      <div class="stat"><div class="n"><span data-count="3">0</span></div><div class="t">Continents served</div></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-cta" data-reveal>
+      <span class="label no-dash" style="justify-content:center;width:100%">Got a project in mind?</span>
+      <a href="mailto:georgichertkov@gmail.com" data-cursor="Say hi">
+        <h2 class="h-display" style="margin-top:1rem">Let's build<br><span class="outline">something</span></h2>
+      </a>
+    </div>
+    <div class="marquee rev">
+      <div class="marquee-track"><span>georgichertkov@gmail.com</span><span>LinkedIn / georgichertkov</span><span>Tucson — Remote</span></div>
+    </div>
+    <div class="footer-grid">
+      <span>© <span data-year>2026</span> Georgi Chertkov</span>
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/in/georgichertkov/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:georgichertkov@gmail.com">Email</a>
+        <a href="https://nomadswipe.com" target="_blank" rel="noopener">NomadSwipe</a>
+      </div>
+      <span>Made with contour lines</span>
+    </div>
+    <div class="big-bg-text">Chertkov</div>
+  </footer>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="assets/js/shared.js"></script>
+<script src="assets/js/home.js"></script>
+<script>
+  /* preloader */
+  (function(){
+    const name = 'GEORGI CHERTKOV';
+    const box = document.getElementById('preName');
+    box.innerHTML = name.split('').map((c,i)=>`<span style="animation-delay:${0.04*i}s" class="${c===' '?'sp':''}">${c===' '?'':c}</span>`).join('');
+    const count = document.getElementById('preCount');
+    const bar = document.getElementById('preBar');
+    const pre = document.getElementById('preloader');
+    let p = 0;
+    const t0 = performance.now();
+    (function tick(t){
+      p = Math.min(100, Math.round((t - t0) / 14));
+      count.textContent = String(p).padStart(2,'0');
+      bar.style.width = p + '%';
+      if (p < 100) requestAnimationFrame(tick);
+      else setTimeout(()=>{
+        pre.style.transition = 'transform 1s cubic-bezier(.87,0,.13,1)';
+        pre.style.transform = 'translateY(-100%)';
+        pre.classList.add('done');
+        setTimeout(()=>pre.remove(), 1100);
+      }, 250);
+    })(t0);
+  })();
+
+  /* role rotator */
+  (function(){
+    const items = [...document.querySelectorAll('#roleSwap i')];
+    let i = 0;
+    setInterval(()=>{
+      const cur = items[i];
+      i = (i+1) % items.length;
+      const nxt = items[i];
+      cur.classList.remove('on'); cur.classList.add('out');
+      nxt.classList.remove('out'); nxt.classList.add('on');
+      setTimeout(()=>cur.classList.remove('out'), 500);
+    }, 2600);
+  })();
+</script>
+</body>
+</html>

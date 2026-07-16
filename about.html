@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Georgi Chertkov</title>
+<meta name="description" content="About Georgi Chertkov — from environmental research in Myanmar to building climate platforms and the NomadSwipe travel app.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230A0B08'/><text x='50' y='68' font-size='52' font-family='Arial Black' font-weight='900' fill='%23C9F24F' text-anchor='middle'>G</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+  .about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center}
+  .fact-list{margin-top:2.2rem;border-top:1px solid var(--line-2)}
+  .fact-list li{display:flex;justify-content:space-between;gap:2rem;padding:1rem 0;border-bottom:1px solid var(--line-2);font-size:.95rem}
+  .fact-list .k{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);padding-top:.2rem}
+  .fact-list .v{text-align:right;color:var(--ink-dim)}
+  .about-carousel .carousel-slide{aspect-ratio:3/2}
+  .about-carousel .carousel-slide img{border-radius:14px;border:1px solid var(--line)}
+
+  /* journey timeline */
+  .journey{position:relative;margin-top:3rem}
+  .journey::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:1px;background:var(--line)}
+  .j-step{position:relative;padding:0 0 3rem 3.4rem}
+  .j-step:last-child{padding-bottom:0}
+  .j-step::before{
+    content:'';position:absolute;left:4px;top:8px;width:15px;height:15px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--lime);transition:background .3s,box-shadow .3s;
+  }
+  .j-step:hover::before{background:var(--lime);box-shadow:0 0 18px rgba(201,242,79,.5)}
+  .j-step .j-year{font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;color:var(--lime);text-transform:uppercase}
+  .j-step h3{font-family:var(--font-display);font-weight:700;font-size:clamp(1.3rem,2.6vw,1.9rem);text-transform:uppercase;margin:.5rem 0 .7rem;letter-spacing:-.01em}
+  .j-step p{color:var(--ink-dim);max-width:62ch}
+  .j-step .tags{margin-top:1rem}
+
+  /* principles */
+  .prin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+  .prin{border:1px solid var(--line-2);border-radius:18px;padding:2.2rem;transition:transform .5s var(--ease-out),border-color .4s}
+  .prin:hover{transform:translateY(-8px);border-color:rgba(201,242,79,.45)}
+  .prin .glyph{font-size:1.9rem}
+  .prin h3{font-family:var(--font-display);font-weight:700;font-size:1.2rem;text-transform:uppercase;margin:1.1rem 0 .7rem}
+  .prin p{color:var(--mut);font-size:.93rem}
+
+  /* currently */
+  .now-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-2);border:1px solid var(--line-2)}
+  .now{background:var(--bg);padding:1.8rem 1.5rem}
+  .now .k{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--lime);margin-bottom:.7rem}
+  .now .v{font-size:.95rem;color:var(--ink-dim)}
+
+  @media(max-width:900px){
+    .about-grid{grid-template-columns:1fr}
+    .prin-grid{grid-template-columns:1fr}
+    .now-grid{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <a href="index.html" class="nav-logo"><span class="dot"></span>GC<span style="font-family:var(--font-mono);font-size:10px;color:var(--lime)">©26</span></a>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="work.html">Work</a>
+    <a href="nomadswipe.html">NomadSwipe</a>
+    <a href="resume.html">Resume</a>
+    <a href="about.html" class="active">About</a>
+  </nav>
+  <button class="nav-burger" aria-label="menu"><i></i><i></i></button>
+</header>
+<div class="menu-overlay">
+  <a href="index.html">Home<small>01</small></a>
+  <a href="work.html">Work<small>02</small></a>
+  <a href="nomadswipe.html">NomadSwipe<small>03</small></a>
+  <a href="resume.html">Resume<small>04</small></a>
+  <a href="about.html">About<small>05</small></a>
+  <div class="menu-meta">georgichertkov@gmail.com — Tucson AZ / Remote</div>
+</div>
+
+<main class="page">
+
+  <section class="page-hero wrap">
+    <span class="label" data-reveal>About me</span>
+    <h1 class="h-display h-xl" data-reveal>Scientist<br><span class="outline">Turned</span><br>Builder</h1>
+    <div class="hero-meta" data-reveal>
+      <span>Est. Hohenheim → Tucson</span><span>Climate × Code × Travel</span><span>One person, full stack</span>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="section wrap">
+    <div class="about-grid">
+      <div>
+        <span class="label" data-reveal>The person behind the pixels</span>
+        <p class="word-reveal" style="font-family:var(--font-display);font-weight:700;font-size:clamp(1.5rem,3.4vw,2.5rem);line-height:1.22;margin-top:1.6rem">I spent years studying how food, energy and water systems survive in harsh places. Now I build the software that helps those ideas travel further.</p>
+        <p class="lead" data-reveal style="margin-top:1.8rem">My path runs from fish ponds in Myanmar's Central Dry Zone to solar-powered farms in Arizona to app stores worldwide. The common thread: taking something complex and making it feel obvious.</p>
+        <ul class="fact-list" data-stagger>
+          <li><span class="k">Based</span><span class="v">Tucson, Arizona — works everywhere</span></li>
+          <li><span class="k">Currently</span><span class="v">Founder @ NomadSwipe</span></li>
+          <li><span class="k">Background</span><span class="v">M.Sc. Environmental Science, Hohenheim</span></li>
+          <li><span class="k">Obsessions</span><span class="v">Maps, motion, recommendation engines</span></li>
+          <li><span class="k">Contact</span><span class="v">georgichertkov@gmail.com</span></li>
+        </ul>
+      </div>
+      <div data-reveal="right">
+        <div class="carousel about-carousel" data-carousel>
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <figure class="carousel-slide"><img src="assets/img/about-desert.jpg" alt="Desert agrivoltaics at golden hour"><figcaption>Sonoran Desert — where the agrivoltaics story lives</figcaption></figure>
+              <figure class="carousel-slide"><img src="assets/img/about-travel.jpg" alt="Traveler in neon-lit alley at night"><figcaption>Nomad mode — the inspiration behind NomadSwipe</figcaption></figure>
+              <figure class="carousel-slide"><img src="assets/img/salsav.jpg" alt="SALSAV website"><figcaption>Work — salsav.org for University of Arizona</figcaption></figure>
+              <figure class="carousel-slide"><img src="assets/img/nomadswipe.jpg" alt="NomadSwipe website"><figcaption>Founder project — nomadswipe.com</figcaption></figure>
+            </div>
+          </div>
+          <div class="carousel-ui">
+            <button class="car-btn" data-car-prev aria-label="previous">←</button>
+            <div class="carousel-dots"></div>
+            <span class="carousel-count"></span>
+            <button class="car-btn" data-car-next aria-label="next">→</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY -->
+  <section class="section wrap">
+    <span class="label" data-reveal>The journey</span>
+    <h2 class="h-display h-lg" data-reveal style="margin:.9rem 0 0">Ponds → Panels<br><span class="outline">→ Products</span></h2>
+    <div class="journey">
+      <div class="j-step" data-reveal>
+        <span class="j-year">2017 — 2019 · Stuttgart</span>
+        <h3>The science years</h3>
+        <p>M.Sc. in Environmental Protection & Agricultural Food Production at the University of Hohenheim. I fell in love with the food-energy-water nexus — the idea that one field can grow crops and harvest sunlight at the same time.</p>
+        <div class="tags"><span class="tag">Hohenheim</span><span class="tag">Agrivoltaics</span><span class="tag">Systems thinking</span></div>
+      </div>
+      <div class="j-step" data-reveal>
+        <span class="j-year">2018 — 2019 · Myanmar</span>
+        <h3>Field research with WorldFish</h3>
+        <p>Months in the Central Dry Zone quantifying pond and labor productivity of smallholder aquaculture farmers — baseline data for introducing improved GIFT tilapia. Published thesis, funded by the Foundation Fiat Panis. This is where I learned that good data only matters if people can use it.</p>
+        <div class="tags"><span class="tag">WorldFish</span><span class="tag">Fiat Panis grant</span><span class="tag">Published thesis</span></div>
+      </div>
+      <div class="j-step" data-reveal>
+        <span class="j-year">2019 — 2023 · The pivot</span>
+        <h3>Teaching myself to build</h3>
+        <p>Researchers kept needing websites, dashboards and tools — so I became the person who builds them. Nights of JavaScript turned into full-stack fluency, and a new career: the scientist who ships software.</p>
+        <div class="tags"><span class="tag">Self-taught</span><span class="tag">Full-stack</span><span class="tag">Design engineering</span></div>
+      </div>
+      <div class="j-step" data-reveal>
+        <span class="j-year">2023 — 2025 · Tucson</span>
+        <h3>Climate platforms for Arizona</h3>
+        <p>OffsetMap first — carbon-offset cartography for everyone. Then the University of Arizona: salsav.org for the agrivoltaics lab, and Agrovoltaicos sin Fronteras, a bilingual seminar platform uniting five institutions across the Americas. Full circle: the science I studied, now at scale online.</p>
+        <div class="tags"><span class="tag">OffsetMap</span><span class="tag">SALSAV</span><span class="tag">AV sin Fronteras</span></div>
+      </div>
+      <div class="j-step" data-reveal>
+        <span class="j-year">2024 — Now · Everywhere</span>
+        <h3>Founder: NomadSwipe</h3>
+        <p>Years of nomadic living crystallized into a product: swipe-based travel planning with a real recommendation engine and group-sync maps. It's live on Google Play, and it's just the beginning.</p>
+        <div class="tags"><span class="tag">NomadSwipe</span><span class="tag">Google Play</span><span class="tag">Founder</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINCIPLES -->
+  <section class="section wrap">
+    <span class="label" data-reveal>How I work</span>
+    <h2 class="h-display h-md" data-reveal style="margin:.9rem 0 3rem">Three rules I build by</h2>
+    <div class="prin-grid" data-stagger>
+      <div class="prin"><div class="glyph">◎</div><h3>Make it usable</h3><p>Research-grade complexity, consumer-grade clarity. If a farmer, a professor and a teenager can't all use it, it isn't done.</p></div>
+      <div class="prin"><div class="glyph">◈</div><h3>Make it felt</h3><p>Motion, maps and micro-interactions aren't decoration — they're how software earns trust and keeps people curious.</p></div>
+      <div class="prin"><div class="glyph">▲</div><h3>Make it ship</h3><p>Demos don't change anything. I take products all the way: architecture, launch, iteration, and the unglamorous fixes at 2 a.m.</p></div>
+    </div>
+  </section>
+
+  <!-- NOW -->
+  <section class="section wrap">
+    <span class="label" data-reveal>Right now</span>
+    <h2 class="h-display h-md" data-reveal style="margin:.9rem 0 3rem">Currently</h2>
+    <div class="now-grid" data-stagger>
+      <div class="now"><div class="k">Building</div><div class="v">NomadSwipe iOS release + next-gen reco engine</div></div>
+      <div class="now"><div class="k">Maintaining</div><div class="v">salsav.org · avsinfronteras.org · offsetmap.com</div></div>
+      <div class="now"><div class="k">Exploring</div><div class="v">WebGL cartography & on-device personalization</div></div>
+      <div class="now"><div class="k">Open to</div><div class="v">Select freelance & climate-tech collaborations</div></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-track"><span>Maps</span><span>Motion</span><span>Recommendation Engines</span><span>Climate Tech</span><span>Travel Tech</span><span>Bilingual Products</span></div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-cta" data-reveal>
+      <span class="label no-dash" style="justify-content:center;width:100%">Say hello</span>
+      <a href="mailto:georgichertkov@gmail.com" data-cursor="Email">
+        <h2 class="h-display" style="margin-top:1rem">georgichertkov<br><span class="outline">@gmail.com</span></h2>
+      </a>
+      <div style="margin-top:2rem;display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap">
+        <a class="btn" href="https://www.linkedin.com/in/georgichertkov/" target="_blank" rel="noopener" data-magnetic="0.25">LinkedIn <span class="arr">↗</span></a>
+        <a class="btn solid" href="resume.html" data-magnetic="0.25">View resume <span class="arr">→</span></a>
+      </div>
+    </div>
+    <div class="footer-grid">
+      <span>© <span data-year>2026</span> Georgi Chertkov</span>
+      <div class="footer-socials">
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="nomadswipe.html">NomadSwipe</a>
+      </div>
+      <span>Tucson — Remote</span>
+    </div>
+    <div class="big-bg-text">About</div>
+  </footer>
+
+</main>
+
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="assets/js/shared.js"></script>
+</body>
+</html>

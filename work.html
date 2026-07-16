@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work — Georgi Chertkov</title>
+<meta name="description" content="Selected projects by Georgi Chertkov: OffsetMap, SALSAV Agrivoltaics (University of Arizona) and Agrovoltaicos sin Fronteras.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230A0B08'/><text x='50' y='68' font-size='52' font-family='Arial Black' font-weight='900' fill='%23C9F24F' text-anchor='middle'>G</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+  .case{border-top:1px solid var(--line);padding-top:clamp(2.5rem,6vh,4rem);margin-top:clamp(3.5rem,9vh,6rem)}
+  .case-head{display:grid;grid-template-columns:auto 1fr auto;gap:2rem;align-items:start;margin-bottom:2.4rem}
+  .case-num{font-family:var(--font-mono);font-size:12px;color:var(--lime);letter-spacing:.2em;padding-top:1.2rem}
+  .case-title{font-family:var(--font-display);font-weight:800;font-size:clamp(2.4rem,6.5vw,5.5rem);text-transform:uppercase;letter-spacing:-.025em;line-height:.95}
+  .case-meta{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:1.5rem;border:1px solid var(--line-2);border-radius:14px;padding:1.3rem 1.6rem;margin-bottom:2.6rem;background:rgba(255,255,255,.015)}
+  .case-meta .k{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);margin-bottom:.4rem}
+  .case-meta .v{font-size:.95rem;font-weight:500}
+  .case-body{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(2rem,4vw,4rem);align-items:start}
+  .case-body .lead{font-size:1.05rem}
+  .feat-list{display:flex;flex-direction:column;gap:0;margin-top:2rem;border-top:1px solid var(--line-2)}
+  .feat-list li{display:flex;gap:1.1rem;padding:1rem 0;border-bottom:1px solid var(--line-2);font-size:.95rem;color:var(--ink-dim)}
+  .feat-list li::before{content:'◆';color:var(--lime);font-size:.6rem;padding-top:.35rem}
+  .case-shots{display:flex;flex-direction:column;gap:1.8rem}
+  .visit-row{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:2.2rem}
+
+  .gallery-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem;margin-bottom:2.4rem}
+  .gallery .carousel-slide{aspect-ratio:16/9}
+  .gallery .carousel-slide img{border:1px solid var(--line);border-radius:14px}
+
+  .next-proj{display:block;text-align:center;padding:clamp(4rem,10vh,7rem) var(--pad);border-top:1px solid var(--line)}
+  .next-proj .h-display{transition:color .4s}
+  .next-proj:hover .h-display{color:var(--org)}
+
+  @media(max-width:900px){
+    .case-head{grid-template-columns:1fr}
+    .case-num{padding-top:0}
+    .case-meta{grid-template-columns:1fr 1fr}
+    .case-body{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <a href="index.html" class="nav-logo"><span class="dot"></span>GC<span style="font-family:var(--font-mono);font-size:10px;color:var(--lime)">©26</span></a>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="work.html" class="active">Work</a>
+    <a href="nomadswipe.html">NomadSwipe</a>
+    <a href="resume.html">Resume</a>
+    <a href="about.html">About</a>
+  </nav>
+  <button class="nav-burger" aria-label="menu"><i></i><i></i></button>
+</header>
+<div class="menu-overlay">
+  <a href="index.html">Home<small>01</small></a>
+  <a href="work.html">Work<small>02</small></a>
+  <a href="nomadswipe.html">NomadSwipe<small>03</small></a>
+  <a href="resume.html">Resume<small>04</small></a>
+  <a href="about.html">About<small>05</small></a>
+  <div class="menu-meta">georgichertkov@gmail.com — Tucson AZ / Remote</div>
+</div>
+
+<main class="page">
+
+  <section class="page-hero wrap">
+    <span class="label" data-reveal>Portfolio 2023 — 2026</span>
+    <h1 class="h-display h-xl" data-reveal>Selected<br><span class="outline">Work</span></h1>
+    <p class="lead" data-reveal>Three platforms, one thread: making complex systems — carbon markets, research science, cross-border communities — feel simple on screen.</p>
+    <div class="hero-meta" data-reveal>
+      <span>03 case studies</span><span>Design → Build → Ship</span><span>All live in production</span>
+    </div>
+  </section>
+
+  <!-- ============ 01 OFFSETMAP ============ -->
+  <section class="case wrap" id="offsetmap">
+    <div class="case-head">
+      <span class="case-num" data-reveal>CASE — 01</span>
+      <h2 class="case-title" data-reveal>Offset<span class="lime">Map</span></h2>
+      <span class="case-num" data-reveal style="text-align:right">2023<br>CLIMATE</span>
+    </div>
+
+    <div class="case-meta" data-stagger>
+      <div><div class="k">Client</div><div class="v">OffsetMap</div></div>
+      <div><div class="k">Role</div><div class="v">Design & Full-stack Build</div></div>
+      <div><div class="k">Focus</div><div class="v">Geospatial Data · Accounts</div></div>
+      <div><div class="k">Status</div><div class="v lime">Live</div></div>
+    </div>
+
+    <div class="case-body">
+      <div data-reveal>
+        <p class="lead">A platform for discovering and supporting carbon-offsetting projects worldwide — forest conservation, renewable energy and beyond — explored through interactive maps instead of spreadsheets.</p>
+        <ul class="feat-list">
+          <li>Interactive cartography of offset projects across the globe</li>
+          <li>User accounts with Google sign-in and saved contributions</li>
+          <li>Project onboarding flow for conservation & renewable initiatives</li>
+          <li>Video-tutorial onboarding — shipped with a guided walkthrough</li>
+        </ul>
+        <div class="tags" style="margin-top:1.8rem"><span class="tag">Web App</span><span class="tag">Maps</span><span class="tag">Auth</span><span class="tag">Climate</span></div>
+        <div class="visit-row">
+          <a class="btn" href="https://www.offsetmap.com" target="_blank" rel="noopener" data-magnetic="0.25">Visit live <span class="arr">↗</span></a>
+        </div>
+      </div>
+      <div class="case-shots" data-reveal="right">
+        <div class="browser" data-tilt>
+          <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">offsetmap.com</span></div>
+          <div class="browser-shot"><img src="assets/img/offsetmap.jpg" alt="OffsetMap sign-in screen over illustrated earth"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 SALSAV ============ -->
+  <section class="case wrap" id="salsav">
+    <div class="case-head">
+      <span class="case-num" data-reveal>CASE — 02</span>
+      <h2 class="case-title" data-reveal>SALSA<span class="lime">V</span></h2>
+      <span class="case-num" data-reveal style="text-align:right">2024<br>RESEARCH</span>
+    </div>
+
+    <div class="case-meta" data-stagger>
+      <div><div class="k">Client</div><div class="v">University of Arizona</div></div>
+      <div><div class="k">Role</div><div class="v">Design & Development</div></div>
+      <div><div class="k">Focus</div><div class="v">Data Storytelling · Interactives</div></div>
+      <div><div class="k">Status</div><div class="v lime">Live</div></div>
+    </div>
+
+    <div class="case-body">
+      <div data-reveal>
+        <p class="lead">The digital home of the Semi-arid Lab for Scaling Agrivoltaics — translating published food-energy-water research into interactive charts, explorable diagrams and learning hubs that scientists, farmers and policymakers can all use.</p>
+        <ul class="feat-list">
+          <li>Interactive "Plant-Panel Symbiosis" diagram — drag to explore microclimate layers</li>
+          <li>Published-data charts: crop yield & water-use efficiency under panels</li>
+          <li>Learning Labs network, education hub, news and team sections</li>
+          <li>Cinematic video hero and full editorial design system</li>
+        </ul>
+        <div class="tags" style="margin-top:1.8rem"><span class="tag">Data Viz</span><span class="tag">Interactive Diagram</span><span class="tag">CMS</span><span class="tag">Video</span></div>
+        <div class="visit-row">
+          <a class="btn" href="https://salsav.org" target="_blank" rel="noopener" data-magnetic="0.25">Visit live <span class="arr">↗</span></a>
+        </div>
+      </div>
+      <div class="case-shots" data-reveal="right">
+        <div class="browser" data-tilt>
+          <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">salsav.org</span></div>
+          <div class="browser-shot"><img src="assets/img/salsav.jpg" alt="SALSAV homepage hero"></div>
+        </div>
+        <div class="browser" data-tilt>
+          <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">salsav.org/research-ecophysiology</span></div>
+          <div class="browser-shot"><img src="assets/img/salsav2.jpg" alt="SALSAV ecophysiology research page"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 AVSF ============ -->
+  <section class="case wrap" id="avsf">
+    <div class="case-head">
+      <span class="case-num" data-reveal>CASE — 03</span>
+      <h2 class="case-title" data-reveal>AV sin<br><span class="lime">Fronteras</span></h2>
+      <span class="case-num" data-reveal style="text-align:right">2025<br>PLATFORM</span>
+    </div>
+
+    <div class="case-meta" data-stagger>
+      <div><div class="k">Client</div><div class="v">UA · UNAM · AAL · UChile · RAMe</div></div>
+      <div><div class="k">Role</div><div class="v">Design & Full-stack Build</div></div>
+      <div><div class="k">Focus</div><div class="v">Community · i18n · Archive</div></div>
+      <div><div class="k">Status</div><div class="v lime">Live</div></div>
+    </div>
+
+    <div class="case-body">
+      <div data-reveal>
+        <p class="lead">Agrovoltaicos sin Fronteras is a bilingual, community-driven seminar platform connecting agrivoltaics researchers from Arizona to Argentina — biweekly talks, a searchable archive and a growing scholar network across five institutions.</p>
+        <ul class="feat-list">
+          <li>Full EN/ES internationalization with instant language switching</li>
+          <li>Seminar schedule, discussion threads, files and speaker profiles</li>
+          <li>Deep archive: search, year filters, 44+ topic tags, recordings</li>
+          <li>Scholar directory, network map and community forum (beta)</li>
+        </ul>
+        <div class="tags" style="margin-top:1.8rem"><span class="tag">Full-stack</span><span class="tag">i18n EN/ES</span><span class="tag">Search & Filters</span><span class="tag">Community</span></div>
+        <div class="visit-row">
+          <a class="btn" href="https://avsinfronteras.org" target="_blank" rel="noopener" data-magnetic="0.25">Visit live <span class="arr">↗</span></a>
+        </div>
+      </div>
+      <div class="case-shots" data-reveal="right">
+        <div class="browser" data-tilt>
+          <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">avsinfronteras.org</span></div>
+          <div class="browser-shot"><img src="assets/img/avs.jpg" alt="AV sin Fronteras homepage"></div>
+        </div>
+        <div class="browser" data-tilt>
+          <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">avsinfronteras.org/archive</span></div>
+          <div class="browser-shot"><img src="assets/img/avs2.jpg" alt="AV sin Fronteras event archive with filters"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section class="section wrap gallery">
+    <div class="gallery-head">
+      <div>
+        <span class="label" data-reveal>Gallery</span>
+        <h2 class="h-display h-md" data-reveal style="margin-top:.8rem">Screens &<span class="outline"> Details</span></h2>
+      </div>
+      <span class="label no-dash" data-reveal>Drag or use arrows</span>
+    </div>
+    <div class="carousel" data-carousel data-reveal="scale">
+      <div class="carousel-viewport">
+        <div class="carousel-track">
+          <figure class="carousel-slide"><img src="assets/img/offsetmap.jpg" alt=""><figcaption>OffsetMap — illustrated-earth auth experience</figcaption></figure>
+          <figure class="carousel-slide"><img src="assets/img/salsav.jpg" alt=""><figcaption>SALSAV — cinematic research hero</figcaption></figure>
+          <figure class="carousel-slide"><img src="assets/img/salsav2.jpg" alt=""><figcaption>SALSAV — ecophysiology interactive</figcaption></figure>
+          <figure class="carousel-slide"><img src="assets/img/avs.jpg" alt=""><figcaption>AVSF — bilingual seminar hub</figcaption></figure>
+          <figure class="carousel-slide"><img src="assets/img/avs2.jpg" alt=""><figcaption>AVSF — archive with 44+ topic tags</figcaption></figure>
+          <figure class="carousel-slide"><img src="assets/img/nomadswipe.jpg" alt=""><figcaption>NomadSwipe — consumer travel product</figcaption></figure>
+        </div>
+      </div>
+      <div class="carousel-ui">
+        <button class="car-btn" data-car-prev aria-label="previous">←</button>
+        <div class="carousel-dots"></div>
+        <span class="carousel-count"></span>
+        <button class="car-btn" data-car-next aria-label="next">→</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- next -->
+  <a class="next-proj" href="nomadswipe.html" data-cursor="Next">
+    <span class="label no-dash" style="justify-content:center;width:100%">Next — the founder project</span>
+    <h2 class="h-display h-lg" style="margin-top:1rem">Nomad<span class="org">Swipe</span> →</h2>
+  </a>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <span>© <span data-year>2026</span> Georgi Chertkov</span>
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/in/georgichertkov/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:georgichertkov@gmail.com">Email</a>
+        <a href="resume.html">Resume</a>
+      </div>
+      <span>Made with contour lines</span>
+    </div>
+    <div class="big-bg-text">Work</div>
+  </footer>
+
+</main>
+
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="assets/js/shared.js"></script>
+</body>
+</html>
