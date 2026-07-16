@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NomadSwipe — Georgi Chertkov</title>
-<meta name="description" content="NomadSwipe — swipe-based travel planning for groups. Founded and built by Georgi Chertkov. Available on Google Play.">
+<title>NomadSwipe — Founder-led React Native Product by Georgi Chertkov</title>
+<meta name="description" content="NomadSwipe is an ongoing travel-planning product founded by Georgi Chertkov in September 2025 and built end-to-end in React Native.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230A0B08'/><text x='50' y='68' font-size='52' font-family='Arial Black' font-weight='900' fill='%23C9F24F' text-anchor='middle'>G</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -134,7 +134,6 @@
   <nav class="nav-links">
     <a href="index.html">Home</a>
     <a href="work.html">Work</a>
-    <a href="nomadswipe.html" class="active">NomadSwipe</a>
     <a href="resume.html">Resume</a>
     <a href="about.html">About</a>
   </nav>
@@ -143,9 +142,8 @@
 <div class="menu-overlay">
   <a href="index.html">Home<small>01</small></a>
   <a href="work.html">Work<small>02</small></a>
-  <a href="nomadswipe.html">NomadSwipe<small>03</small></a>
-  <a href="resume.html">Resume<small>04</small></a>
-  <a href="about.html">About<small>05</small></a>
+  <a href="resume.html">Resume<small>03</small></a>
+  <a href="about.html">About<small>04</small></a>
   <div class="menu-meta">georgichertkov@gmail.com — Tucson AZ / Remote</div>
 </div>
 
@@ -155,11 +153,11 @@
   <section class="ns-hero wrap section">
     <div class="ns-hero-grid">
       <div>
-        <span class="pill-live" data-reveal><i></i>Live on Google Play</span>
+        <span class="pill-live" data-reveal><i></i>Founder-led · Ongoing since Sep 2025</span>
         <h1 class="h-display h-xl" data-reveal style="margin:1.4rem 0">Swipe it.<br>Map it.<br><span class="org">Go.</span></h1>
-        <p class="lead" data-reveal>NomadSwipe is my answer to the 14-open-tabs era of trip planning. A swipe-based travel app that learns what you love — down to the exact cuisine — and turns group chaos into a shared map of places you'll actually visit.</p>
+        <p class="lead" data-reveal>I founded NomadSwipe in September 2025 and continue to build it end-to-end in React Native — product direction, design, mobile development, backend systems, recommendation logic, maps, releases and maintenance.</p>
         <div style="display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:2.4rem" data-reveal>
-          <a class="btn orange" href="https://play.google.com/store/apps/details?id=com.gchertkov.SwipeNomad" target="_blank" rel="noopener" data-magnetic="0.25">Get the app <span class="arr">↗</span></a>
+          <a class="btn orange" href="https://play.google.com/store/apps/details?id=com.gchertkov.SwipeNomad" target="_blank" rel="noopener" data-magnetic="0.25">View Android listing <span class="arr">↗</span></a>
           <a class="btn" href="#demo" data-magnetic="0.25">Try the demo ↓</a>
         </div>
       </div>
@@ -178,7 +176,7 @@
       <div>
         <span class="label" data-reveal style="color:var(--org)">Live demo — drag the cards</span>
         <h2 class="h-display h-lg" data-reveal style="margin:.9rem 0 1.4rem">The core<br><span class="outline">loop</span></h2>
-        <p class="lead" data-reveal>Right to save, left to pass. Every swipe teaches the engine — this little demo runs the same interaction model as the app. Watch the vibe readout adapt as you swipe.</p>
+        <p class="lead" data-reveal>Right to save, left to pass. This browser prototype mirrors the product's primary decision pattern; the counters and preference readout are local to this demo.</p>
         <div class="demo-score" data-reveal>
           <div><b id="savedCount" class="lime">0</b>Saved</div>
           <div><b id="passedCount" class="org">0</b>Passed</div>
@@ -200,10 +198,10 @@
   <section class="section wrap">
     <div class="engine-grid">
       <div>
-        <span class="label" data-reveal>Smart architecture</span>
-        <h2 class="h-display h-lg" data-reveal style="margin:.9rem 0 1.4rem">An engine that<br>gets your <span class="org">vibe</span></h2>
-        <p class="lead" data-reveal>Most travel apps dump the same ten tourist traps on everyone. NomadSwipe's recommendation engine lets you rank categories and pick hyper-specific sub-vibes — Boutique Hotels, Dive Bars, Third-wave Coffee — then mathematically weights your deck. You only see what you actually care about.</p>
-        <div class="tags" style="margin-top:1.8rem" data-reveal><span class="tag">Weighted deck</span><span class="tag">Sub-vibes</span><span class="tag">Category ranking</span><span class="tag">Adaptive learning</span></div>
+        <span class="label" data-reveal>Preference model</span>
+        <h2 class="h-display h-lg" data-reveal style="margin:.9rem 0 1.4rem">Discovery shaped<br>by your <span class="org">choices</span></h2>
+        <p class="lead" data-reveal>Users can rank broad categories and choose more specific preferences such as boutique hotels, dive bars or third-wave coffee. Those inputs weight the deck before the first swipe and keep the experience focused.</p>
+        <div class="tags" style="margin-top:1.8rem" data-reveal><span class="tag">Weighted deck</span><span class="tag">Sub-vibes</span><span class="tag">Category ranking</span><span class="tag">Map organization</span></div>
       </div>
       <div class="bars" data-stagger id="engineBars">
         <div class="bar-row"><div class="bar-top"><span>🍜 Restaurants</span><b>40%</b></div><div class="bar-track"><div class="bar-fill" style="--w:40%"></div></div></div>
@@ -219,9 +217,9 @@
     <span class="label" data-reveal>The NomadSwipe flow</span>
     <h2 class="h-display h-md" data-reveal style="margin:.9rem 0 3rem">Discovery without the drag</h2>
     <div class="flow" data-stagger>
-      <div class="flow-step"><div class="num">01</div><h3>Swipe Discovery</h3><p>No endless scrolling. Hours of travel-blog reading compressed into a fast, highly-curated visual deck.</p></div>
-      <div class="flow-step"><div class="num">02</div><h3>Interactive Routing</h3><p>Every right swipe auto-plots onto your personal trip map. See how saves cluster and plan your days geographically.</p></div>
-      <div class="flow-step"><div class="num">03</div><h3>Group Sync</h3><p>Invite the group chat. Everyone swipes on their own time; the map highlights mutual matches. Consensus, zero arguments.</p></div>
+      <div class="flow-step"><div class="num">01</div><h3>Review</h3><p>Look at one place at a time in a compact visual deck instead of comparing many browser tabs.</p></div>
+      <div class="flow-step"><div class="num">02</div><h3>Save & Map</h3><p>Saved places appear on a trip map so geographic clusters and practical routes are easier to see.</p></div>
+      <div class="flow-step"><div class="num">03</div><h3>Compare Together</h3><p>Group planning tools bring individual choices into one shared view for a clearer conversation.</p></div>
     </div>
   </section>
 
@@ -271,24 +269,21 @@
     <div class="faq" data-reveal>
       <div class="faq-item"><button class="faq-q">What is NomadSwipe?<span class="pm">+</span></button><div class="faq-a"><p>A swipe-based travel planning app that helps you discover restaurants, attractions, hotels and nightlife based on your preferences — then maps everything you save.</p></div></div>
       <div class="faq-item"><button class="faq-q">Who is it for?<span class="pm">+</span></button><div class="faq-a"><p>Travelers and groups who want to make trip decisions faster — without juggling tabs, spreadsheets and group-chat debates.</p></div></div>
-      <div class="faq-item"><button class="faq-q">Where can I get it?<span class="pm">+</span></button><div class="faq-a"><p>NomadSwipe is available now on Google Play for Android. The iOS App Store release is coming soon.</p></div></div>
-      <div class="faq-item"><button class="faq-q">How does the recommendation engine work?<span class="pm">+</span></button><div class="faq-a"><p>You rank categories and choose specific sub-vibes; the algorithm weights your swipe deck toward the places you care about most, and keeps learning from every save and pass.</p></div></div>
-      <div class="faq-item"><button class="faq-q">Who built it?<span class="pm">+</span></button><div class="faq-a"><p>NomadSwipe is designed and built end-to-end by me, Georgi Chertkov — product, recommendation logic, mobile app and the marketing site at nomadswipe.com.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Where can I get it?<span class="pm">+</span></button><div class="faq-a"><p>The Android listing is linked on this page. The store page is the source of truth for current availability and compatibility.</p></div></div>
+      <div class="faq-item"><button class="faq-q">How does the recommendation model work?<span class="pm">+</span></button><div class="faq-a"><p>You rank categories and choose specific sub-vibes; those stated preferences weight the place deck toward the types of options you want to review.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Who built it?<span class="pm">+</span></button><div class="faq-a"><p>I founded NomadSwipe in September 2025 and handle the complete product as its full-stack developer: strategy, design, React Native app, backend, recommendation logic, maps, releases, maintenance and the site at nomadswipe.com.</p></div></div>
     </div>
   </section>
 
   <!-- DOWNLOAD -->
   <section class="section dl wrap">
-    <span class="label no-dash" data-reveal style="justify-content:center">Ready when you are</span>
-    <h2 class="h-display h-lg" data-reveal style="margin:1rem 0 .6rem">Plan less.<br><span class="org">Experience more.</span></h2>
-    <p class="lead" data-reveal style="margin:0 auto">Grab the app, set your preferences, and build your next trip with zero planning drag.</p>
+    <span class="label no-dash" data-reveal style="justify-content:center">See the product</span>
+    <h2 class="h-display h-lg" data-reveal style="margin:1rem 0 .6rem">Review less.<br><span class="org">Map what matters.</span></h2>
+    <p class="lead" data-reveal style="margin:0 auto">Open the Android listing for current availability, compatibility and release information.</p>
     <div class="store-btns" data-reveal>
       <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.gchertkov.SwipeNomad" target="_blank" rel="noopener" data-magnetic="0.2">
-        <span class="ic">▶</span><span><small>Available now</small><b>Google Play</b></span>
+        <span class="ic">▶</span><span><small>View listing</small><b>Google Play</b></span>
       </a>
-      <span class="store-btn soon">
-        <span class="ic"></span><span><small>Coming soon</small><b>App Store</b></span>
-      </span>
     </div>
   </section>
 
@@ -300,7 +295,7 @@
         <a href="https://play.google.com/store/apps/details?id=com.gchertkov.SwipeNomad" target="_blank" rel="noopener">Google Play</a>
         <a href="mailto:georgichertkov@gmail.com">Email</a>
       </div>
-      <span>Swipe right on life</span>
+      <span>Founder-built in React Native</span>
     </div>
     <div class="big-bg-text" style="-webkit-text-stroke-color:rgba(255,106,61,.06)">Nomad</div>
   </footer>

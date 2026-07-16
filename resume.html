@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Resume — Georgi Chertkov</title>
-<meta name="description" content="Resume of Georgi Chertkov — creative developer and founder: NomadSwipe, University of Arizona research platforms, OffsetMap.">
+<meta name="description" content="Resume of Georgi Chertkov — founder of OffsetMap and NomadSwipe and an environmental scientist specializing in agriculture, carbon markets, economics and applied data products.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230A0B08'/><text x='50' y='68' font-size='52' font-family='Arial Black' font-weight='900' fill='%23C9F24F' text-anchor='middle'>G</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,37 +15,33 @@
   .contact-strip{
     display:flex;gap:2.4rem;flex-wrap:wrap;margin-top:2.4rem;padding:1.2rem 0;
     border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-    font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);
+    font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);
   }
   .contact-strip a{color:var(--ink-dim);transition:color .3s}
   .contact-strip a:hover{color:var(--lime)}
-
   .cv-grid{display:grid;grid-template-columns:280px 1fr;gap:clamp(2rem,5vw,5rem)}
   .cv-side{position:sticky;top:7rem;align-self:start}
   .cv-side .label{margin-bottom:0}
-
-  .xp{border-top:1px solid var(--line);padding:2.2rem 0;display:grid;grid-template-columns:170px 1fr;gap:1.6rem}
+  .xp{border-top:1px solid var(--line);padding:2.2rem 0;display:grid;grid-template-columns:180px 1fr;gap:1.6rem}
   .xp:last-child{border-bottom:1px solid var(--line)}
-  .xp-when{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--lime);padding-top:.4rem}
+  .xp-when{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);padding-top:.4rem}
   .xp h3{font-family:var(--font-display);font-weight:700;font-size:clamp(1.25rem,2.4vw,1.7rem);text-transform:uppercase;letter-spacing:-.01em}
-  .xp .org-line{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin:.45rem 0 1rem}
-  .xp p{color:var(--ink-dim);font-size:.98rem;max-width:64ch}
+  .org-line{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin:.45rem 0 1rem}
+  .xp p{color:var(--ink-dim);font-size:.98rem;max-width:68ch}
   .xp ul{margin-top:.9rem;display:flex;flex-direction:column;gap:.45rem}
   .xp li{color:var(--ink-dim);font-size:.93rem;display:flex;gap:.7rem}
   .xp li::before{content:'→';color:var(--lime);flex-shrink:0}
-
   .skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
   .skill-box{border:1px solid var(--line-2);border-radius:16px;padding:1.8rem;transition:border-color .35s}
   .skill-box:hover{border-color:rgba(201,242,79,.4)}
   .skill-box h4{font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--lime);margin-bottom:1.1rem}
   .skill-box .tags .tag{margin:0 .2rem .5rem 0}
-
   .edu-card{border:1px solid var(--line-2);border-radius:16px;padding:2.2rem;position:relative;overflow:hidden}
   .edu-card::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(201,242,79,.1),transparent 65%)}
   .edu-card h3{font-family:var(--font-display);font-weight:700;font-size:1.5rem;text-transform:uppercase;margin:.6rem 0 1rem}
-  .edu-card p{color:var(--ink-dim);max-width:64ch}
-
+  .edu-card p{color:var(--ink-dim);max-width:68ch}
   .download-note{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.14em;color:var(--mut);text-transform:uppercase;margin-top:.8rem}
+  .print-sheet{display:none}
 
   @media(max-width:900px){
     .cv-grid{grid-template-columns:1fr}
@@ -54,17 +50,36 @@
     .skill-grid{grid-template-columns:1fr}
   }
 
+  @page{size:Letter;margin:0}
   @media print{
-    body{background:#fff;color:#111}
-    .nav,.menu-overlay,.footer,.grain,.cursor-dot,.cursor-ring,.wipe,#printBtn,.big-bg-text{display:none!important}
-    [data-reveal]{opacity:1!important;transform:none!important}
-    .page-hero{padding-top:2rem}
-    .h-display,.xp h3,.edu-card h3{color:#111;-webkit-text-stroke:0}
-    .lead,.xp p,.xp li,.edu-card p{color:#333}
-    .label,.contact-strip,.xp-when,.skill-box h4{color:#555}
-    .xp,.contact-strip{border-color:#ddd}
-    .tag{border-color:#ccc;color:#333}
-    .edu-card,.skill-box{border-color:#ddd}
+    html,body{width:8.5in;height:11in;background:#fff!important;color:#171914!important}
+    .nav,.menu-overlay,.screen-resume,.grain,.cursor-dot,.cursor-ring,.wipe{display:none!important}
+    .print-sheet{display:block!important;width:8.5in;height:11in;overflow:hidden;padding:.42in .5in .38in;font-family:Arial,Helvetica,sans-serif;font-size:8.6pt;line-height:1.28;color:#24261f;background:#fff}
+    .print-sheet *{box-sizing:border-box}
+    .print-head{border-bottom:3px solid #9dc72e;padding-bottom:.12in;margin-bottom:.15in}
+    .print-name{font-size:25pt;line-height:.95;font-weight:800;letter-spacing:-.8pt;text-transform:uppercase;color:#11130f}
+    .print-title{margin-top:.08in;font-size:9pt;font-weight:700;letter-spacing:.7pt;text-transform:uppercase;color:#637122}
+    .print-summary{font-size:8.8pt;line-height:1.35;margin-top:.1in;max-width:7.35in}
+    .print-contact{display:flex;gap:.22in;flex-wrap:wrap;margin-top:.08in;font-size:7.6pt;color:#4d5148}
+    .print-grid{display:grid;grid-template-columns:5.02in 2.15in;gap:.32in}
+    .print-section{margin-bottom:.16in}
+    .print-section-title{font-size:8pt;font-weight:800;letter-spacing:1.1pt;text-transform:uppercase;color:#637122;border-bottom:1px solid #cfd4c2;padding-bottom:.035in;margin-bottom:.08in}
+    .print-role{margin-bottom:.105in;break-inside:avoid}
+    .print-role-top{display:flex;justify-content:space-between;gap:.12in;align-items:baseline}
+    .print-role h2{font-size:9.2pt;line-height:1.15;font-weight:800;color:#171914;margin:0}
+    .print-date{font-size:7.2pt;font-weight:700;white-space:nowrap;color:#637122;text-transform:uppercase}
+    .print-org{font-size:7.5pt;font-weight:700;color:#52564d;margin:.015in 0 .035in;text-transform:uppercase;letter-spacing:.25pt}
+    .print-role ul{margin:0;padding:0;list-style:none}
+    .print-role li{position:relative;padding-left:.105in;margin:.018in 0;color:#33362f}
+    .print-role li::before{content:'•';position:absolute;left:0;color:#87aa22;font-weight:800}
+    .print-list{margin:0;padding:0;list-style:none}
+    .print-list li{margin:0 0 .055in;color:#33362f}
+    .print-list strong{color:#171914}
+    .print-tagline{font-size:8pt;line-height:1.36;color:#33362f}
+    .print-impact{display:grid;grid-template-columns:1fr 1fr;gap:.07in;margin-top:.04in}
+    .impact-box{border:1px solid #d9ddcf;padding:.07in}
+    .impact-box b{display:block;font-size:14pt;line-height:1;color:#87aa22}
+    .impact-box span{display:block;margin-top:.025in;font-size:6.8pt;line-height:1.2;text-transform:uppercase;color:#55594f}
   }
 </style>
 </head>
@@ -75,7 +90,6 @@
   <nav class="nav-links">
     <a href="index.html">Home</a>
     <a href="work.html">Work</a>
-    <a href="nomadswipe.html">NomadSwipe</a>
     <a href="resume.html" class="active">Resume</a>
     <a href="about.html">About</a>
   </nav>
@@ -84,154 +98,238 @@
 <div class="menu-overlay">
   <a href="index.html">Home<small>01</small></a>
   <a href="work.html">Work<small>02</small></a>
-  <a href="nomadswipe.html">NomadSwipe<small>03</small></a>
-  <a href="resume.html">Resume<small>04</small></a>
-  <a href="about.html">About<small>05</small></a>
+  <a href="resume.html">Resume<small>03</small></a>
+  <a href="about.html">About<small>04</small></a>
   <div class="menu-meta">georgichertkov@gmail.com — Tucson AZ / Remote</div>
 </div>
 
 <main class="page">
-
-  <section class="page-hero wrap">
-    <div class="resume-head">
-      <div>
-        <span class="label" data-reveal>Resume</span>
-        <h1 class="h-display h-xl" data-reveal style="margin-top:.8rem">Georgi<br><span class="outline">Chertkov</span></h1>
-      </div>
-      <div data-reveal>
-        <button class="btn solid" id="printBtn" data-magnetic="0.25" onclick="window.print()">Print / Save PDF <span class="arr">↓</span></button>
-        <div class="download-note">Prints as a clean one-pager</div>
-      </div>
-    </div>
-    <p class="lead" data-reveal style="margin-top:1.8rem">Creative developer & founder with an environmental-science backbone. I design and ship production products — consumer apps, research platforms, geospatial tools — for clients ranging from the University of Arizona to my own startup.</p>
-    <div class="contact-strip" data-reveal>
-      <a href="mailto:georgichertkov@gmail.com">georgichertkov@gmail.com</a>
-      <a href="https://www.linkedin.com/in/georgichertkov/" target="_blank" rel="noopener">linkedin.com/in/georgichertkov</a>
-      <span>Tucson, AZ — Remote worldwide</span>
-      <a href="https://nomadswipe.com" target="_blank" rel="noopener">nomadswipe.com</a>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section class="section wrap">
-    <div class="cv-grid">
-      <div class="cv-side"><span class="label" data-reveal>Experience</span></div>
-      <div>
-        <article class="xp" data-reveal>
-          <div class="xp-when">2024 — Now</div>
-          <div>
-            <h3>Founder & Lead Developer</h3>
-            <div class="org-line">NomadSwipe — Travel Tech · Tucson / Remote</div>
-            <p>Founded and built a swipe-based travel-planning app end-to-end: product strategy, recommendation engine, mobile app, backend and marketing site.</p>
-            <ul>
-              <li>Designed a preference-weighted recommendation engine with category ranking and hyper-specific "sub-vibes"</li>
-              <li>Shipped the Android app to Google Play; iOS release in progress</li>
-              <li>Built group-sync trip maps: mutual matches across friends' swipe sessions</li>
-              <li>Designed and developed nomadswipe.com with an interactive live deck demo</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="xp" data-reveal>
-          <div class="xp-when">2023 — Now</div>
-          <div>
-            <h3>Independent Web Developer</h3>
-            <div class="org-line">Research & Climate Clients · incl. University of Arizona</div>
-            <p>Design and build digital platforms that translate complex science into usable, public-facing products.</p>
-            <ul>
-              <li><b>SALSAV (salsav.org)</b> — site for the Semi-arid Lab for Scaling Agrivoltaics: interactive research diagrams, published-data charts, learning-lab network</li>
-              <li><b>Agrovoltaicos sin Fronteras (avsinfronteras.org)</b> — bilingual EN/ES seminar platform for UA, UNAM, AAL, UChile and RAMe: schedule, searchable archive, scholar network, forum</li>
-              <li>Long-term iteration with researchers — from information architecture to launch and beyond</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="xp" data-reveal>
-          <div class="xp-when">2023</div>
-          <div>
-            <h3>Creator & Developer</h3>
-            <div class="org-line">OffsetMap (offsetmap.com) — Climate / Geospatial</div>
-            <p>Built a platform for discovering and contributing to carbon-offset projects worldwide through interactive maps.</p>
-            <ul>
-              <li>Map-first discovery of forest-conservation and renewable-energy projects</li>
-              <li>Account system with Google sign-in and contribution flows</li>
-              <li>Produced a full video-tutorial onboarding for new users</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="xp" data-reveal>
-          <div class="xp-when">2018 — 2019</div>
-          <div>
-            <h3>Graduate Researcher</h3>
-            <div class="org-line">University of Hohenheim × WorldFish — Central Dry Zone, Myanmar</div>
-            <p>Field-based micro-economic study on small-holder aquaculture, funded by the Foundation Fiat Panis.</p>
-            <ul>
-              <li>Quantified pond and labor productivity of smallholder fish farmers ahead of GIFT tilapia introduction</li>
-              <li>Designed mixed quantitative/qualitative surveys; delivered baseline data for the 2020/21 impact study</li>
-              <li>Published master thesis with investment scenarios for smallholder profitability</li>
-            </ul>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section class="section wrap">
-    <div class="cv-grid">
-      <div class="cv-side"><span class="label" data-reveal>Capabilities</span></div>
-      <div class="skill-grid" data-stagger>
-        <div class="skill-box"><h4>Front-end</h4><div class="tags"><span class="tag">JavaScript / TypeScript</span><span class="tag">React</span><span class="tag">Three.js / WebGL</span><span class="tag">GSAP</span><span class="tag">CSS Architecture</span><span class="tag">Motion Design</span></div></div>
-        <div class="skill-box"><h4>Mobile & Backend</h4><div class="tags"><span class="tag">React Native</span><span class="tag">Android / Google Play</span><span class="tag">REST APIs</span><span class="tag">Auth (OAuth)</span><span class="tag">Databases</span></div></div>
-        <div class="skill-box"><h4>Data & Maps</h4><div class="tags"><span class="tag">Geospatial UI</span><span class="tag">Data Visualization</span><span class="tag">Recommendation Logic</span><span class="tag">Search & Filtering</span><span class="tag">i18n EN/ES</span></div></div>
-        <div class="skill-box"><h4>Domain</h4><div class="tags"><span class="tag">Climate & Agrivoltaics</span><span class="tag">Research Communication</span><span class="tag">Field Research</span><span class="tag">Product Strategy</span><span class="tag">UX Writing</span></div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EDUCATION -->
-  <section class="section wrap">
-    <div class="cv-grid">
-      <div class="cv-side"><span class="label" data-reveal>Education</span></div>
-      <div>
-        <div class="edu-card" data-reveal>
-          <span class="label">M.Sc. — 2019</span>
-          <h3>Environmental Protection &<br>Agricultural Food Production</h3>
-          <div class="org-line" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-bottom:1rem">University of Hohenheim · Stuttgart, Germany</div>
-          <p>Thesis: <em>"Quantifying Pond and Labor Productivity of Small-holder Aquaculture Farmers in the Central Dry-Zone of Myanmar"</em> — supervised at the Hans-Ruthenberg Institute, funded by the Foundation Fiat Panis, in collaboration with WorldFish.</p>
-          <div class="tags" style="margin-top:1.6rem"><span class="tag">Published research</span><span class="tag">Fiat Panis grant</span><span class="tag">Field work: Myanmar</span></div>
+  <div class="screen-resume">
+    <section class="page-hero wrap">
+      <div class="resume-head">
+        <div>
+          <span class="label" data-reveal>Resume</span>
+          <h1 class="h-display h-xl" data-reveal style="margin-top:.8rem">Georgi<br><span class="outline">Chertkov</span></h1>
         </div>
-
-        <div class="edu-card" data-reveal style="margin-top:1.4rem">
-          <span class="label">Always on</span>
-          <h3>Self-taught Engineer</h3>
-          <p>From research spreadsheets to shipping apps — I taught myself modern web and mobile development, and I keep sharpening the stack with every product I ship.</p>
-          <div class="tags" style="margin-top:1.6rem"><span class="tag">EN — fluent</span><span class="tag">Ships bilingual EN/ES products</span></div>
+        <div data-reveal>
+          <a class="btn solid" href="assets/georgi-chertkov-resume.pdf" download data-magnetic="0.25">Download one-page PDF <span class="arr">↓</span></a>
+          <div class="download-note">Letter size · one page · print ready</div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="footer-cta" data-reveal>
-      <span class="label no-dash" style="justify-content:center;width:100%">Want the full story?</span>
-      <a href="about.html" data-cursor="About">
-        <h2 class="h-display" style="margin-top:1rem">Read the<br><span class="outline">About page</span></h2>
-      </a>
-    </div>
-    <div class="footer-grid">
-      <span>© <span data-year>2026</span> Georgi Chertkov</span>
-      <div class="footer-socials">
-        <a href="https://www.linkedin.com/in/georgichertkov/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="mailto:georgichertkov@gmail.com">Email</a>
-        <a href="work.html">Work</a>
+      <p class="lead" data-reveal style="margin-top:1.8rem">Founder and environmental scientist passionate about data, climate science, agriculture and carbon markets, with a strong background in policy and economic analysis.</p>
+      <div class="contact-strip" data-reveal>
+        <a href="mailto:georgichertkov@gmail.com">georgichertkov@gmail.com</a>
+        <a href="https://www.linkedin.com/in/georgichertkov/" target="_blank" rel="noopener">linkedin.com/in/georgichertkov</a>
+        <span>Tucson, AZ · Remote</span>
+        <a href="https://www.offsetmap.com" target="_blank" rel="noopener">offsetmap.com</a>
       </div>
-      <span>References on request</span>
-    </div>
-    <div class="big-bg-text">Resume</div>
-  </footer>
+    </section>
 
+    <section class="section wrap">
+      <div class="cv-grid">
+        <div class="cv-side"><span class="label" data-reveal>Experience</span></div>
+        <div>
+          <article class="xp" data-reveal>
+            <div class="xp-when">Sep 2025 — Present</div>
+            <div>
+              <h3>Founder & Full-stack Developer</h3>
+              <div class="org-line">NomadSwipe · Remote</div>
+              <p>Founded and continue to build a React Native travel-planning product end-to-end.</p>
+              <ul>
+                <li>Own product strategy, interface design, architecture and day-to-day development.</li>
+                <li>Build the React Native mobile application and supporting full-stack systems.</li>
+                <li>Handle recommendation logic, maps, testing, releases, maintenance and the product website.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="xp" data-reveal>
+            <div class="xp-when">Mar 2023 — Present</div>
+            <div>
+              <h3>Founder</h3>
+              <div class="org-line">OffsetMap · Self-employed · Remote</div>
+              <p>Lead the lifecycle of a web application that makes complex carbon-offset information easier to explore and understand.</p>
+              <ul>
+                <li>Oversee product development, enhancements, maintenance and future application strategy.</li>
+                <li>Manage complex datasets and scalable performance for a growing global user base.</li>
+                <li>Keep the application aligned with evolving offset standards, registry information and credit-retirement data.</li>
+                <li>Write and maintain Python, JavaScript and SQL; troubleshoot issues and communicate with external stakeholders.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="xp" data-reveal>
+            <div class="xp-when">Mar 2024 — Jun 2026</div>
+            <div>
+              <h3>Environmental Scientist / Biostatistician II</h3>
+              <div class="org-line">Biosphere 2 · University of Arizona · Tucson, AZ · Hybrid</div>
+              <p>Worked across carbon-market research, interdisciplinary project design and public-facing agrivoltaics communication.</p>
+              <ul>
+                <li>Created and maintained avsinfronteras.org, with networking, paper recommendations, maps and forums for a seminar series across the Americas.</li>
+                <li>Created salsav.org for a University of Arizona agrivoltaics research group, using interactive maps, animations and graphs.</li>
+                <li>Developed and managed carbon-market research, including Biosphere 2's potential as a testing ground for carbon methodologies.</li>
+                <li>Translated complex information for researchers and stakeholders, contributed to project design and co-authored academic work.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="xp" data-reveal>
+            <div class="xp-when">Sep 2020 — May 2022</div>
+            <div>
+              <h3>Expert</h3>
+              <div class="org-line">Higher School of Economics · Moscow, Russia</div>
+              <ul>
+                <li>Published analytical reports, presentations and guidance for policymakers.</li>
+                <li>Researched emissions markets, carbon pricing, carbon farming, regenerative agriculture and agricultural technology.</li>
+                <li>Analyzed agricultural firms, ag-tech startups and transport infrastructure; provided applied research and consultancy.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="xp" data-reveal>
+            <div class="xp-when">May 2019 — Sep 2019</div>
+            <div>
+              <h3>Future Policy Award Intern</h3>
+              <div class="org-line">World Future Council · Hamburg, Germany</div>
+              <ul>
+                <li>Researched and co-wrote 12 of the 26 policies evaluated for the 2019 Future Policy Award with IPU and UNDP.</li>
+                <li>Interviewed experts across government, academia and civil society.</li>
+                <li>Co-authored research on agroecology and digitization and prepared public communications.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="xp" data-reveal>
+            <div class="xp-when">Feb 2019 — Sep 2019</div>
+            <div>
+              <h3>Masters Student</h3>
+              <div class="org-line">WorldFish · Myanmar</div>
+              <ul>
+                <li>Conducted quantitative and qualitative research with 39 aquaculture farmers and industry informants.</li>
+                <li>Budgeted and organized fieldwork across WorldFish, the University of Hohenheim, Myanmar's Department of Fisheries and BRAC.</li>
+                <li>Performed financial, cost-benefit and investment analyses using household survey data.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <div class="cv-grid">
+        <div class="cv-side"><span class="label" data-reveal>Capabilities</span></div>
+        <div class="skill-grid" data-stagger>
+          <div class="skill-box"><h4>Climate & Agriculture</h4><div class="tags"><span class="tag">Carbon Markets</span><span class="tag">Carbon Pricing</span><span class="tag">Agrivoltaics</span><span class="tag">Carbon Farming</span><span class="tag">Agroecology</span><span class="tag">Regenerative Agriculture</span></div></div>
+          <div class="skill-box"><h4>Research & Analysis</h4><div class="tags"><span class="tag">Policy Analysis</span><span class="tag">Market Analysis</span><span class="tag">Cost-benefit Analysis</span><span class="tag">Survey Research</span><span class="tag">Project Design</span><span class="tag">Scientific Writing</span></div></div>
+          <div class="skill-box"><h4>Data & Development</h4><div class="tags"><span class="tag">React Native</span><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">SQL</span><span class="tag">Flask</span><span class="tag">Leaflet</span><span class="tag">Plotly</span><span class="tag">Dash</span><span class="tag">Chart.js</span></div></div>
+          <div class="skill-box"><h4>Collaboration</h4><div class="tags"><span class="tag">Stakeholder Communication</span><span class="tag">Interdisciplinary Research</span><span class="tag">Project Management</span><span class="tag">Data Visualization</span><span class="tag">Research Translation</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <div class="cv-grid">
+        <div class="cv-side"><span class="label" data-reveal>Education</span></div>
+        <div>
+          <div class="edu-card" data-reveal>
+            <span class="label">M.Sc. · 2019</span>
+            <h3>Environmental Protection & Agricultural Food Production</h3>
+            <div class="org-line">University of Hohenheim · Stuttgart, Germany</div>
+            <p>Thesis research with WorldFish on pond and labor productivity among smallholder aquaculture farmers in Myanmar's Central Dry Zone, including financial and investment analysis.</p>
+          </div>
+          <div class="edu-card" data-reveal style="margin-top:1.4rem">
+            <span class="label">Double major · 2007 — 2012</span>
+            <h3>B.S. Earth Science (Earth Systems)<br>& B.S. Environmental Studies</h3>
+            <div class="org-line">University of California, Santa Barbara</div>
+            <p>Undergraduate training across earth systems and environmental studies, grounding later work in environmental science, agriculture and climate.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-cta" data-reveal>
+        <span class="label no-dash" style="justify-content:center;width:100%">More context behind the résumé</span>
+        <a href="about.html" data-cursor="About"><h2 class="h-display" style="margin-top:1rem">Read the<br><span class="outline">About page</span></h2></a>
+      </div>
+      <div class="footer-grid">
+        <span>© <span data-year>2026</span> Georgi Chertkov</span>
+        <div class="footer-socials">
+          <a href="https://www.linkedin.com/in/georgichertkov/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:georgichertkov@gmail.com">Email</a>
+          <a href="work.html">Work</a>
+        </div>
+        <span>References on request</span>
+      </div>
+      <div class="big-bg-text">Resume</div>
+    </footer>
+  </div>
+
+  <article class="print-sheet" aria-label="Printable one-page resume">
+    <header class="print-head">
+      <div class="print-name">Georgi Chertkov</div>
+      <div class="print-title">Founder · Environmental Scientist · Agriculture & Carbon Markets</div>
+      <p class="print-summary">Environmental scientist and agricultural specialist with a strong background in policy and economic analysis. Founder of OffsetMap, combining climate and carbon-market knowledge with applied research, data visualization and web development.</p>
+      <div class="print-contact"><span>georgichertkov@gmail.com</span><span>linkedin.com/in/georgichertkov</span><span>offsetmap.com</span><span>Tucson, AZ / Remote</span></div>
+    </header>
+    <div class="print-grid">
+      <section>
+        <div class="print-section-title">Experience</div>
+        <div class="print-role">
+          <div class="print-role-top"><h2>Founder & Full-stack Developer · NomadSwipe</h2><span class="print-date">Sep 2025 - Present</span></div>
+          <div class="print-org">Remote · React Native</div>
+          <ul><li>Own the full product: strategy, design, mobile app, backend, recommendation logic, maps, releases and maintenance.</li></ul>
+        </div>
+        <div class="print-role">
+          <div class="print-role-top"><h2>Founder · OffsetMap</h2><span class="print-date">Mar 2023 - Present</span></div>
+          <div class="print-org">Self-employed · Remote</div>
+          <ul><li>Lead product development, maintenance and strategy for a carbon-offset data web application.</li><li>Manage complex datasets, evolving standards, registry information and credit-retirement data.</li><li>Build with Python, JavaScript and SQL; create maps and visualizations and work with stakeholders.</li></ul>
+        </div>
+        <div class="print-role">
+          <div class="print-role-top"><h2>Environmental Scientist / Biostatistician II</h2><span class="print-date">Mar 2024 - Jun 2026</span></div>
+          <div class="print-org">Biosphere 2 · University of Arizona</div>
+          <ul><li>Designed and managed carbon-market research and assessed carbon-methodology testing opportunities.</li><li>Built avsinfronteras.org and salsav.org with interactive maps, graphs, networking and research tools.</li><li>Translated technical information for researchers and stakeholders and contributed to academic work.</li></ul>
+        </div>
+        <div class="print-role">
+          <div class="print-role-top"><h2>Expert</h2><span class="print-date">Sep 2020 - May 2022</span></div>
+          <div class="print-org">Higher School of Economics · Moscow</div>
+          <ul><li>Produced policy reports on emissions markets, carbon pricing, carbon farming, agriculture and transport.</li><li>Analyzed agricultural firms and ag-tech startups and provided applied research for policymakers.</li></ul>
+        </div>
+        <div class="print-role">
+          <div class="print-role-top"><h2>Future Policy Award Intern</h2><span class="print-date">May 2019 - Sep 2019</span></div>
+          <div class="print-org">World Future Council · Hamburg</div>
+          <ul><li>Researched and co-wrote 12 of 26 policies evaluated with IPU and UNDP.</li><li>Interviewed experts and co-authored work on agroecology and digitization.</li></ul>
+        </div>
+        <div class="print-role">
+          <div class="print-role-top"><h2>Masters Student</h2><span class="print-date">Feb 2019 - Sep 2019</span></div>
+          <div class="print-org">WorldFish · Myanmar</div>
+          <ul><li>Surveyed 39 aquaculture farmers and informants; coordinated multi-partner fieldwork.</li><li>Performed financial, cost-benefit and investment analyses using household data.</li></ul>
+        </div>
+      </section>
+      <aside>
+        <div class="print-section">
+          <div class="print-section-title">Core Expertise</div>
+          <p class="print-tagline">Carbon markets · Carbon pricing · Agrivoltaics · Carbon farming · Regenerative agriculture · Agroecology · Climate science</p>
+        </div>
+        <div class="print-section">
+          <div class="print-section-title">Research & Analysis</div>
+          <ul class="print-list"><li>Policy and market analysis</li><li>Cost-benefit and investment analysis</li><li>Survey and field research</li><li>Project design and management</li><li>Scientific and stakeholder communication</li></ul>
+        </div>
+        <div class="print-section">
+          <div class="print-section-title">Technical</div>
+          <p class="print-tagline">React Native · Python · JavaScript · SQL · Flask · Leaflet · Plotly · Dash · Chart.js · Interactive maps · Data visualization</p>
+        </div>
+        <div class="print-section">
+          <div class="print-section-title">Education</div>
+          <p class="print-tagline"><strong>M.Sc., Environmental Protection & Agricultural Food Production</strong><br>University of Hohenheim, 2019<br><br><strong>B.S., Earth Science (Earth Systems)</strong><br><strong>B.S., Environmental Studies</strong><br>UC Santa Barbara, 2007 - 2012<br><br>Thesis research with WorldFish on smallholder aquaculture productivity in Myanmar.</p>
+        </div>
+        <div class="print-section">
+          <div class="print-section-title">Selected Impact</div>
+          <div class="print-impact"><div class="impact-box"><b>3+</b><span>Years leading OffsetMap</span></div><div class="impact-box"><b>2+</b><span>Years at Biosphere 2</span></div><div class="impact-box"><b>12</b><span>Award policies researched</span></div><div class="impact-box"><b>39</b><span>Farmers surveyed</span></div></div>
+        </div>
+      </aside>
+    </div>
+  </article>
 </main>
 
 <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>

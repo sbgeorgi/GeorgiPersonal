@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Georgi Chertkov</title>
+<meta name="description" content="About Georgi Chertkov — environmental scientist, agricultural specialist and OffsetMap founder with experience in carbon markets, policy, economics and applied research.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230A0B08'/><text x='50' y='68' font-size='52' font-family='Arial Black' font-weight='900' fill='%23C9F24F' text-anchor='middle'>G</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+  .about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center}
+  .fact-list{margin-top:2.2rem;border-top:1px solid var(--line-2)}
+  .fact-list li{display:flex;justify-content:space-between;gap:2rem;padding:1rem 0;border-bottom:1px solid var(--line-2);font-size:.95rem}
+  .fact-list .k{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);padding-top:.2rem}
+  .fact-list .v{text-align:right;color:var(--ink-dim)}
+  .about-carousel .carousel-slide{aspect-ratio:3/2}
+  .about-carousel .carousel-slide img{border-radius:14px;border:1px solid var(--line)}
+
+  /* journey timeline */
+  .journey{position:relative;margin-top:3rem}
+  .journey::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:1px;background:var(--line)}
+  .j-step{position:relative;padding:0 0 3rem 3.4rem}
+  .j-step:last-child{padding-bottom:0}
+  .j-step::before{
+    content:'';position:absolute;left:4px;top:8px;width:15px;height:15px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--lime);transition:background .3s,box-shadow .3s;
+  }
+  .j-step:hover::before{background:var(--lime);box-shadow:0 0 18px rgba(201,242,79,.5)}
+  .j-step .j-year{font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;color:var(--lime);text-transform:uppercase}
+  .j-step h3{font-family:var(--font-display);font-weight:700;font-size:clamp(1.3rem,2.6vw,1.9rem);text-transform:uppercase;margin:.5rem 0 .7rem;letter-spacing:-.01em}
+  .j-step p{color:var(--ink-dim);max-width:62ch}
+  .j-step .tags{margin-top:1rem}
+
+  /* principles */
+  .prin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+  .prin{border:1px solid var(--line-2);border-radius:18px;padding:2.2rem;transition:transform .5s var(--ease-out),border-color .4s}
+  .prin:hover{transform:translateY(-8px);border-color:rgba(201,242,79,.45)}
+  .prin .glyph{font-size:1.9rem}
+  .prin h3{font-family:var(--font-display);font-weight:700;font-size:1.2rem;text-transform:uppercase;margin:1.1rem 0 .7rem}
+  .prin p{color:var(--mut);font-size:.93rem}
+
+  /* currently */
+  .now-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-2);border:1px solid var(--line-2)}
+  .now{background:var(--bg);padding:1.8rem 1.5rem}
+  .now .k{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--lime);margin-bottom:.7rem}
+  .now .v{font-size:.95rem;color:var(--ink-dim)}
+
+  @media(max-width:900px){
+    .about-grid{grid-template-columns:1fr}
+    .prin-grid{grid-template-columns:1fr}
+    .now-grid{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <a href="index.html" class="nav-logo"><span class="dot"></span>GC<span style="font-family:var(--font-mono);font-size:10px;color:var(--lime)">©26</span></a>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="work.html">Work</a>
+    <a href="resume.html">Resume</a>
+    <a href="about.html" class="active">About</a>
+  </nav>
+  <button class="nav-burger" aria-label="menu"><i></i><i></i></button>
+</header>
+<div class="menu-overlay">
+  <a href="index.html">Home<small>01</small></a>
+  <a href="work.html">Work<small>02</small></a>
+  <a href="resume.html">Resume<small>03</small></a>
+  <a href="about.html">About<small>04</small></a>
+  <div class="menu-meta">georgichertkov@gmail.com — Tucson AZ / Remote</div>
+</div>
+
+<main class="page">
+
+  <section class="page-hero wrap">
+    <span class="label" data-reveal>About me</span>
+    <h1 class="h-display h-xl" data-reveal>Science<br><span class="outline">Policy</span><br>Product</h1>
+    <div class="hero-meta" data-reveal>
+      <span>Environmental science</span><span>Agriculture × carbon markets</span><span>Research made usable</span>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="section wrap">
+    <div class="about-grid">
+      <div>
+        <span class="label" data-reveal>The short version</span>
+        <p class="word-reveal" style="font-family:var(--font-display);font-weight:700;font-size:clamp(1.5rem,3.4vw,2.5rem);line-height:1.22;margin-top:1.6rem">I am an environmental scientist and agricultural specialist with a strong background in policy and economic analysis.</p>
+        <p class="lead" data-reveal style="margin-top:1.8rem">I combine agriculture and emerging technologies with a practical desire to help address the climate crisis. My work has moved from farm-level field research and policy analysis to carbon-market research, stakeholder communication and the development of public-facing data tools.</p>
+        <ul class="fact-list" data-stagger>
+          <li><span class="k">Based</span><span class="v">Tucson, Arizona — works everywhere</span></li>
+          <li><span class="k">Currently</span><span class="v">Founder, OffsetMap & NomadSwipe</span></li>
+          <li><span class="k">Education</span><span class="v">UCSB double B.S. · University of Hohenheim M.Sc.</span></li>
+          <li><span class="k">Focus</span><span class="v">Data, climate science, agriculture & carbon markets</span></li>
+          <li><span class="k">Contact</span><span class="v">georgichertkov@gmail.com</span></li>
+        </ul>
+      </div>
+      <div data-reveal="right">
+        <div class="carousel about-carousel" data-carousel>
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <figure class="carousel-slide"><img src="assets/img/about-desert.jpg" alt="Desert agrivoltaics at golden hour"><figcaption>Agrivoltaics research in the Sonoran Desert</figcaption></figure>
+              <figure class="carousel-slide"><img src="assets/img/offsetmap.jpg" alt="OffsetMap carbon project platform"><figcaption>OffsetMap — carbon information made explorable</figcaption></figure>
+              <figure class="carousel-slide"><img src="assets/img/salsav.jpg" alt="SALSAV website"><figcaption>SALSAV — University of Arizona agrivoltaics research</figcaption></figure>
+              <figure class="carousel-slide"><img src="assets/img/avs.jpg" alt="AV sin Fronteras website"><figcaption>AV sin Fronteras — connecting research across the Americas</figcaption></figure>
+              <figure class="carousel-slide"><img src="assets/img/nomadswipe.jpg" alt="NomadSwipe travel-planning product"><figcaption>NomadSwipe — ongoing React Native founder project</figcaption></figure>
+            </div>
+          </div>
+          <div class="carousel-ui">
+            <button class="car-btn" data-car-prev aria-label="previous">←</button>
+            <div class="carousel-dots"></div>
+            <span class="carousel-count"></span>
+            <button class="car-btn" data-car-next aria-label="next">→</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY -->
+  <section class="section wrap">
+    <span class="label" data-reveal>The journey</span>
+    <h2 class="h-display h-lg" data-reveal style="margin:.9rem 0 0">Fieldwork → Policy<br><span class="outline">→ Carbon data</span></h2>
+    <div class="journey">
+      <div class="j-step" data-reveal>
+        <span class="j-year">2007 — 2012 · Santa Barbara</span>
+        <h3>Earth systems and environmental studies</h3>
+        <p>Completed a double major at the University of California, Santa Barbara: a B.S. in Earth Science with an Earth Systems emphasis and a B.S. in Environmental Studies.</p>
+        <div class="tags"><span class="tag">UC Santa Barbara</span><span class="tag">Earth Science</span><span class="tag">Environmental Studies</span></div>
+      </div>
+      <div class="j-step" data-reveal>
+        <span class="j-year">2019 · Myanmar</span>
+        <h3>Aquaculture research with WorldFish</h3>
+        <p>Conducted quantitative and qualitative research with 39 aquaculture farmers and industry informants in Myanmar's Central Dry Zone. I organized the fieldwork across multiple partners and used household data for financial, cost-benefit and investment analyses.</p>
+        <div class="tags"><span class="tag">WorldFish</span><span class="tag">Field research</span><span class="tag">Economic analysis</span></div>
+      </div>
+      <div class="j-step" data-reveal>
+        <span class="j-year">2019 · Hamburg</span>
+        <h3>Future Policy Award</h3>
+        <p>Researched and co-wrote 12 of the 26 policies evaluated for the 2019 Future Policy Award in partnership with the Inter-Parliamentary Union and UNDP. The work included expert interviews, public communication and a paper on agroecology and digitization.</p>
+        <div class="tags"><span class="tag">World Future Council</span><span class="tag">Policy evaluation</span><span class="tag">Youth empowerment</span></div>
+      </div>
+      <div class="j-step" data-reveal>
+        <span class="j-year">2020 — 2022 · Moscow</span>
+        <h3>Policy and market analysis</h3>
+        <p>At the Higher School of Economics, produced analytical reports and guidance for policymakers on emissions markets, carbon pricing, carbon farming, agricultural technology and transport infrastructure.</p>
+        <div class="tags"><span class="tag">Higher School of Economics</span><span class="tag">Carbon pricing</span><span class="tag">Agricultural markets</span></div>
+      </div>
+      <div class="j-step" data-reveal>
+        <span class="j-year">2023 — Present · Remote</span>
+        <h3>Founder: OffsetMap</h3>
+        <p>Lead the full lifecycle of a carbon-offset web application: product direction, Python and JavaScript development, complex dataset management, interactive visualization, maintenance and communication with external stakeholders.</p>
+        <div class="tags"><span class="tag">OffsetMap</span><span class="tag">Carbon data</span><span class="tag">Product development</span></div>
+      </div>
+      <div class="j-step" data-reveal>
+        <span class="j-year">2024 — 2026 · Tucson</span>
+        <h3>Environmental science at Biosphere 2</h3>
+        <p>Designed and managed carbon-market research, assessed Biosphere 2 as a testbed for carbon methodologies, and translated technical findings for researchers and stakeholders. I also built salsav.org and avsinfronteras.org to extend the reach of agrivoltaics research.</p>
+        <div class="tags"><span class="tag">University of Arizona</span><span class="tag">Biosphere 2</span><span class="tag">Agrivoltaics</span></div>
+      </div>
+      <div class="j-step" data-reveal>
+        <span class="j-year">September 2025 — Present · Remote</span>
+        <h3>Founder: NomadSwipe</h3>
+        <p>Founded an ongoing travel-planning product built in React Native. I handle the complete product: strategy, interface design, mobile development, backend systems, recommendation logic, maps, testing, releases and maintenance.</p>
+        <div class="tags"><span class="tag">NomadSwipe</span><span class="tag">React Native</span><span class="tag">Full-stack development</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINCIPLES -->
+  <section class="section wrap">
+    <span class="label" data-reveal>How I work</span>
+    <h2 class="h-display h-md" data-reveal style="margin:.9rem 0 3rem">Three principles I work by</h2>
+    <div class="prin-grid" data-stagger>
+      <div class="prin"><div class="glyph">◎</div><h3>Start with evidence</h3><p>Good analysis begins with the methodology, data source and limits — especially when environmental claims affect real decisions.</p></div>
+      <div class="prin"><div class="glyph">◈</div><h3>Translate across fields</h3><p>I connect public policy, economics, ecology, geography and agriculture so specialists and stakeholders can work from the same picture.</p></div>
+      <div class="prin"><div class="glyph">▲</div><h3>Build for use</h3><p>A report, map or application should help someone decide, learn or act. Clear communication is part of the technical work.</p></div>
+    </div>
+  </section>
+
+  <!-- NOW -->
+  <section class="section wrap">
+    <span class="label" data-reveal>Right now</span>
+    <h2 class="h-display h-md" data-reveal style="margin:.9rem 0 3rem">Currently</h2>
+    <div class="now-grid" data-stagger>
+      <div class="now"><div class="k">Leading</div><div class="v">OffsetMap and NomadSwipe product direction, development and maintenance</div></div>
+      <div class="now"><div class="k">Working across</div><div class="v">Carbon markets, agriculture, climate science and data</div></div>
+      <div class="now"><div class="k">Building with</div><div class="v">React Native, Python, JavaScript, SQL, Flask, Leaflet, Plotly and Dash</div></div>
+      <div class="now"><div class="k">Open to</div><div class="v">Research, product and policy collaborations with measurable environmental value</div></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-track"><span>Carbon Markets</span><span>Agriculture</span><span>Climate Science</span><span>Policy</span><span>Economic Analysis</span><span>Data Products</span></div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-cta" data-reveal>
+      <span class="label no-dash" style="justify-content:center;width:100%">Say hello</span>
+      <a href="mailto:georgichertkov@gmail.com" data-cursor="Email">
+        <h2 class="h-display" style="margin-top:1rem">georgichertkov<br><span class="outline">@gmail.com</span></h2>
+      </a>
+      <div style="margin-top:2rem;display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap">
+        <a class="btn" href="https://www.linkedin.com/in/georgichertkov/" target="_blank" rel="noopener" data-magnetic="0.25">LinkedIn <span class="arr">↗</span></a>
+        <a class="btn solid" href="resume.html" data-magnetic="0.25">View resume <span class="arr">→</span></a>
+      </div>
+    </div>
+    <div class="footer-grid">
+      <span>© <span data-year>2026</span> Georgi Chertkov</span>
+      <div class="footer-socials">
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="https://www.offsetmap.com" target="_blank" rel="noopener">OffsetMap</a>
+        <a href="https://nomadswipe.com" target="_blank" rel="noopener">NomadSwipe</a>
+      </div>
+      <span>Tucson — Remote</span>
+    </div>
+    <div class="big-bg-text">About</div>
+  </footer>
+
+</main>
+
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="assets/js/shared.js"></script>
+</body>
+</html>

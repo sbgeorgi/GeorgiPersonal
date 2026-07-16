@@ -5,6 +5,7 @@
 (function () {
   const canvas = document.getElementById('topo-canvas');
   if (!canvas || !window.THREE) return;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
@@ -59,7 +60,8 @@
       vec2 p  = (gl_FragCoord.xy - 0.5*uRes.xy) / min(uRes.x, uRes.y);
 
       vec2 m = (uMouse - 0.5) * 1.4;
-      float t = uTime * 0.055;
+      /* Deliberately slow: this field should feel ambient, not like motion content. */
+      float t = uTime * 0.016;
 
       /* domain warp — mouse pushes the field */
       vec2 q = p*1.7 + vec2(t, -t*0.6);
@@ -112,26 +114,32 @@
     const h = canvas.clientHeight || innerHeight;
     renderer.setSize(w, h, false);
     uniforms.uRes.value.set(w * renderer.getPixelRatio(), h * renderer.getPixelRatio());
+    if (reduceMotion) renderer.render(scene, camera);
   }
   size();
   addEventListener('resize', size);
 
   const targetM = new THREE.Vector2(0.5, 0.5);
-  addEventListener('mousemove', e => targetM.set(e.clientX / innerWidth, 1 - e.clientY / innerHeight));
+  if (!reduceMotion) addEventListener('mousemove', e => targetM.set(e.clientX / innerWidth, 1 - e.clientY / innerHeight));
 
   let scrollV = 0;
-  addEventListener('scroll', () => { scrollV = scrollY / innerHeight; }, { passive: true });
+  if (!reduceMotion) addEventListener('scroll', () => { scrollV = scrollY / innerHeight; }, { passive: true });
 
   const clock = new THREE.Clock();
   let inView = true;
   new IntersectionObserver(en => (inView = en[0].isIntersecting)).observe(canvas);
 
+  if (reduceMotion) {
+    renderer.render(scene, camera);
+    return;
+  }
+
   (function loop() {
     requestAnimationFrame(loop);
     if (!inView) return;
     uniforms.uTime.value = clock.getElapsedTime();
-    uniforms.uMouse.value.lerp(targetM, 0.045);
-    uniforms.uScroll.value += (scrollV - uniforms.uScroll.value) * 0.06;
+    uniforms.uMouse.value.lerp(targetM, 0.022);
+    uniforms.uScroll.value += (scrollV - uniforms.uScroll.value) * 0.025;
     renderer.render(scene, camera);
   })();
 })();
