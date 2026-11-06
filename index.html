@@ -1,370 +1,272 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Georgi Chertkov — Environmental Scientist & Founder</title>
-<meta name="description" content="Georgi Chertkov is an environmental scientist, agricultural specialist and founder of OffsetMap and NomadSwipe, working across climate data, carbon markets and digital products.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230A0B08'/><text x='50' y='68' font-size='52' font-family='Arial Black' font-weight='900' fill='%23C9F24F' text-anchor='middle'>G</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Georgi Chertkov — Environmental scientist, Tucson</title>
+<meta name="description" content="Georgi Chertkov is an environmental scientist, agricultural specialist and founder of OffsetMap and NomadSwipe in Tucson, Arizona, building maps and web tools from climate data, carbon markets and agrivoltaics research.">
+<meta property="og:title" content="Georgi Chertkov — Environmental scientist, Tucson"><meta property="og:description" content="Environmental scientist and founder in Tucson. I read land, carbon and climate data and build the maps and web tools that make it usable.">
+<meta property="og:image" content="https://georgichertkov.com/assets/img/og.jpg"><meta property="og:type" content="website">
+<meta name="theme-color" content="#0c0e0b">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@800&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/main.css">
-<style>
-  /* ===== landing specific ===== */
-  .hero{height:100svh;min-height:640px;position:relative;display:flex;align-items:flex-end;overflow:hidden}
-  #topo-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-  .hero-inner{position:relative;z-index:2;width:100%;padding:0 var(--pad) clamp(2.2rem,6vh,4.5rem)}
-  .hero-title{font-size:clamp(3.2rem,12.5vw,11.5rem);line-height:.92}
-  .hero-title .row{display:block;overflow:hidden}
-  .hero-title .row span{display:inline-block;transform:translateY(112%);animation:heroUp 1.1s var(--ease-exp) forwards}
-  .hero-title .row:nth-child(2) span{animation-delay:.12s}
-  @keyframes heroUp{to{transform:translateY(0)}}
-  .hero-sub{
-    display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;
-    margin-top:2.2rem;padding-top:1.6rem;border-top:1px solid var(--line);
-  }
-  .hero-role{font-family:var(--font-mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim);display:flex;gap:.8rem;align-items:center}
-  .role-swap{color:var(--lime);position:relative;display:inline-block;min-width:25ch}
-  .role-swap i{font-style:normal;position:absolute;left:0;top:0;opacity:0;transform:translateY(60%);transition:.5s var(--ease-exp)}
-  .role-swap i.on{opacity:1;transform:translateY(0)}
-  .role-swap i.out{opacity:0;transform:translateY(-60%)}
-  .hero-meta{font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);display:flex;gap:2.4rem;flex-wrap:wrap}
-  .scroll-cue{display:flex;align-items:center;gap:.7rem;color:var(--mut);font-family:var(--font-mono);font-size:11px;letter-spacing:.2em}
-  .scroll-cue .wheel{width:1px;height:44px;background:var(--line);position:relative;overflow:hidden}
-  .scroll-cue .wheel::after{content:'';position:absolute;top:-40%;left:0;width:100%;height:40%;background:var(--lime);animation:cue 1.8s var(--ease-exp) infinite}
-  @keyframes cue{to{top:110%}}
-  .hero-corner{position:absolute;z-index:2;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.22em;color:var(--mut);text-transform:uppercase}
-  .hc-tl{top:6.4rem;left:var(--pad)}
-  .hc-tr{top:6.4rem;right:var(--pad);text-align:right}
-
-  /* manifesto */
-  .manifesto p{font-family:var(--font-display);font-weight:700;font-size:clamp(1.7rem,4.4vw,3.5rem);line-height:1.18;letter-spacing:-.015em;max-width:22ch}
-  .manifesto .accent-row{display:flex;gap:1.4rem;align-items:center;margin-top:3rem;flex-wrap:wrap}
-
-  /* selected work */
-  .work-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:3.5rem}
-  .work-list{display:flex;flex-direction:column;gap:clamp(3.5rem,8vh,6rem)}
-  .work-item{display:grid;grid-template-columns:1fr 1.35fr;gap:clamp(1.6rem,4vw,4rem);align-items:center;border-top:1px solid var(--line);padding-top:2.6rem}
-  .work-item:nth-child(even){grid-template-columns:1.35fr 1fr}
-  .work-item:nth-child(even) .work-info{order:2}
-  .work-idx{font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;color:var(--lime);margin-bottom:1rem}
-  .work-name{font-family:var(--font-display);font-weight:800;font-size:clamp(1.9rem,4vw,3.2rem);letter-spacing:-.02em;text-transform:uppercase;line-height:1;margin-bottom:1.1rem}
-  .work-desc{color:var(--ink-dim);max-width:44ch;margin-bottom:1.4rem}
-  .work-media{position:relative}
-  .work-media::after{content:attr(data-tag);position:absolute;top:-13px;right:18px;background:var(--lime);color:#0A0B08;font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:.35rem .8rem;border-radius:99px}
-
-  /* nomad banner */
-  .nomad-banner{
-    background:linear-gradient(160deg,#171008 0%,#0A0B08 55%);
-    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-    position:relative;overflow:hidden;
-  }
-  .nomad-banner::before{
-    content:'';position:absolute;width:60vw;height:60vw;border-radius:50%;
-    background:radial-gradient(circle,rgba(255,106,61,.16),transparent 65%);
-    top:-25vw;right:-18vw;pointer-events:none;
-  }
-  .nomad-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center}
-  .deck-visual{position:relative;height:480px;display:flex;align-items:center;justify-content:center}
-  .deck-card{
-    position:absolute;width:min(300px,72%);aspect-ratio:3/4.1;border-radius:22px;
-    border:1px solid var(--line);padding:1.4rem;display:flex;flex-direction:column;justify-content:flex-end;gap:.3rem;
-    box-shadow:0 30px 60px -20px rgba(0,0,0,.75);
-  }
-  .deck-card .dc-cat{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.75)}
-  .deck-card .dc-name{font-family:var(--font-display);font-weight:700;font-size:1.5rem}
-  .deck-card .dc-meta{font-family:var(--font-mono);font-size:11px;color:rgba(255,255,255,.7)}
-  .deck-card.c1{background:linear-gradient(160deg,#3d2b1a,#171008);transform:rotate(-9deg) translate(-52px,10px)}
-  .deck-card.c2{background:linear-gradient(160deg,#1c2a12,#0d120a);transform:rotate(6deg) translate(46px,-8px)}
-  .deck-card.c3{background:linear-gradient(160deg,#2a1408,#120a05);transform:rotate(-1deg) scale(1.05);border-color:rgba(255,106,61,.5)}
-  .deck-float{animation:float 6s ease-in-out infinite}
-  @keyframes float{50%{translate:0 -14px}}
-  .swipe-badge{
-    position:absolute;bottom:8%;left:50%;transform:translateX(-50%);
-    font-family:var(--font-mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
-    border:1px solid var(--line);border-radius:99px;padding:.5rem 1.1rem;background:rgba(10,11,8,.7);backdrop-filter:blur(6px);
-  }
-
-  /* capabilities */
-  .cap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-2);border:1px solid var(--line-2)}
-  .cap{background:var(--bg);padding:2rem 1.6rem;transition:background .4s}
-  .cap:hover{background:var(--panel)}
-  .cap .num{font-family:var(--font-mono);font-size:11px;color:var(--lime);letter-spacing:.2em}
-  .cap h3{font-family:var(--font-display);font-weight:700;font-size:1.25rem;margin:.9rem 0 .7rem;text-transform:uppercase;letter-spacing:-.01em}
-  .cap p{font-size:.9rem;color:var(--mut);line-height:1.55}
-
-  @media(max-width:900px){
-    .work-item,.work-item:nth-child(even){grid-template-columns:1fr}
-    .work-item:nth-child(even) .work-info{order:0}
-    .nomad-grid{grid-template-columns:1fr}
-    .deck-visual{height:420px}
-    .cap-grid{grid-template-columns:1fr 1fr}
-    .hero-corner{display:none}
-  }
-  @media(max-width:560px){.cap-grid{grid-template-columns:1fr}}
-</style>
+<link rel="stylesheet" href="assets/css/hero.css">
+<link rel="stylesheet" href="assets/css/home.css">
+<script>(function(d){if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('motion');setTimeout(function(){if(!window.gsap)d.classList.remove('motion')},3500)}})(document.documentElement)</script>
 </head>
 <body>
-
-<!-- preloader -->
-<div class="preloader" id="preloader">
-  <div class="pre-name" id="preName"></div>
-  <div class="pre-tag">Portfolio — v2026</div>
-  <div class="pre-count" id="preCount">00</div>
-  <div class="pre-bar" id="preBar"></div>
-</div>
-
-<!-- nav -->
-<header class="nav">
-  <a href="index.html" class="nav-logo"><span class="dot"></span>GC<span style="font-family:var(--font-mono);font-size:10px;color:var(--lime)">©26</span></a>
-  <nav class="nav-links">
-    <a href="index.html" class="active">Home</a>
-    <a href="work.html">Work</a>
-    <a href="resume.html">Resume</a>
-    <a href="about.html">About</a>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" data-nav>
+  <a class="nav__mark" href="index.html" aria-label="Georgi Chertkov — home" aria-current="page">
+    <svg class="sunmark" viewBox="0 0 28 16" aria-hidden="true"><path class="sunmark__arc" d="M2 14 A12 12 0 0 1 26 14"/><circle class="sunmark__sun" cx="14" cy="2" r="2.4"/></svg>
+    <span>Georgi Chertkov</span>
+  </a>
+  <nav class="nav__links" aria-label="Primary">
+    <a href="work.html" data-scramble>Work</a>
+    <a href="resume.html" data-scramble>Resume</a>
+    <a href="about.html" data-scramble>About</a>
   </nav>
-  <button class="nav-burger" aria-label="menu"><i></i><i></i></button>
+  <button class="nav__menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
 </header>
-<div class="menu-overlay">
-  <a href="index.html">Home<small>01</small></a>
-  <a href="work.html">Work<small>02</small></a>
-  <a href="resume.html">Resume<small>03</small></a>
-  <a href="about.html">About<small>04</small></a>
-  <div class="menu-meta">georgichertkov@gmail.com — Tucson AZ / Remote</div>
+<div class="menu" id="menu" hidden>
+  <nav class="menu__links" aria-label="Menu">
+    <a href="index.html" aria-current="page">Home</a><a href="work.html">Work</a><a href="resume.html">Resume</a><a href="about.html">About</a>
+  </nav>
+  <p class="menu__meta"><a href="mailto:georgichertkov@gmail.com">georgichertkov@gmail.com</a><a href="https://www.linkedin.com/in/georgichertkov/" target="_blank" rel="noopener">LinkedIn</a><span>Tucson, Arizona · <span data-clock></span></span><span data-sunline></span></p>
 </div>
 
-<main class="page">
+<main id="main">
 
-  <!-- HERO -->
-  <section class="hero">
-    <canvas id="topo-canvas"></canvas>
-    <div class="hero-corner hc-tl">32.2226° N, 110.9747° W<br>Tucson — Worldwide</div>
-    <div class="hero-corner hc-tr">Available for<br>select projects</div>
-    <div class="hero-inner">
-      <h1 class="h-display hero-title">
-        <span class="row"><span>Georgi</span></span>
-        <span class="row"><span class="outline">Chertkov</span></span>
-      </h1>
-      <div class="hero-sub">
-        <div class="hero-role">
-          <span>Environmental Scientist</span>
-          <span style="color:var(--mut)">/</span>
-          <span class="role-swap" id="roleSwap">
-            <i class="on">Founder, OffsetMap</i>
-            <i>Founder, NomadSwipe</i>
-            <i>Agricultural specialist</i>
-            <i>Carbon-market analyst</i>
-            <i>Front-end developer</i>
-            <i>AI & data tools</i>
-          </span>
-        </div>
-        <div class="scroll-cue"><span class="wheel"></span>Scroll</div>
-      </div>
+<section class="hero" id="top" data-chapter="night" data-cursor-mode="lens">
+  <div class="hero__pin">
+    <canvas class="hero__gl" aria-hidden="true"></canvas>
+    <h1 class="hero__name"><span class="hero__line">Georgi</span> <span class="hero__line">Chertkov</span></h1>
+    <div class="hero__copy">
+      <p class="hero__lede">Environmental scientist in Tucson. I read land, carbon and climate data and build the maps and web tools that make it usable.</p>
+      <p class="hero__role">Environmental Scientist <span aria-hidden="true">/</span> <span class="hero__roleswap" data-roles="Founder, OffsetMap|Founder, NomadSwipe|Agricultural specialist|Carbon-market analyst|Front-end developer|AI &amp; data tools">Founder, OffsetMap</span></p>
+      <div class="hero__actions"><a class="btn" href="#work"><span class="btn__label" data-roll>See the work</span><span class="btn__arr" aria-hidden="true">→</span></a><a class="link-u" href="resume.html">Resume</a></div>
     </div>
-  </section>
+    <p class="hero__corner">32.2226° N, 110.9747° W<br>Tucson — Worldwide · Available for select projects</p>
+    <div class="hud" aria-hidden="true"></div>
+    <div class="sundial" role="slider" tabindex="0" aria-label="Time of day for the sunlight" aria-valuemin="0" aria-valuemax="1439" aria-valuenow="720" aria-valuetext="12:00 pm"></div>
+    <p class="hero__scale" aria-hidden="true">Tucson basin · contour interval 50 m</p>
+  </div>
+</section>
 
-  <!-- MARQUEE -->
-  <div class="marquee">
-    <div class="marquee-track">
-      <span>Environmental Science</span><span>Agriculture</span><span>Carbon Markets</span><span>Front-end Development</span><span>AI-assisted Tools</span><span>Data Visualization</span><span>Interactive Maps</span>
+<div class="bands" aria-label="Disciplines and projects">
+  <div class="band band--lime" style="--dur:70s"><div class="band__group">Environmental Science <svg class="band__sun" aria-hidden="true"></svg> Agriculture <svg class="band__sun" aria-hidden="true"></svg> Carbon Markets <svg class="band__sun" aria-hidden="true"></svg> Front-end Development <svg class="band__sun" aria-hidden="true"></svg> AI-assisted Tools <svg class="band__sun" aria-hidden="true"></svg> Data Visualization <svg class="band__sun" aria-hidden="true"></svg> Interactive Maps <svg class="band__sun" aria-hidden="true"></svg></div></div>
+  <div class="band band--thermal band--rev" style="--dur:56s"><div class="band__group">OffsetMap <svg class="band__sun" aria-hidden="true"></svg> SALSAV <svg class="band__sun" aria-hidden="true"></svg> AV sin Fronteras <svg class="band__sun" aria-hidden="true"></svg> NomadSwipe <svg class="band__sun" aria-hidden="true"></svg> University of Arizona <svg class="band__sun" aria-hidden="true"></svg> Tucson <svg class="band__sun" aria-hidden="true"></svg></div></div>
+</div>
+
+<section class="intro" id="intro" data-chapter="bone" aria-labelledby="intro-title">
+  <div class="intro__in g12">
+    <div class="intro__copy">
+    <h2 class="intro__title display" id="intro-title" data-reveal>The short version</h2>
+    <p class="statement intro__statement" data-scrub>I combine <mark data-hue="lime">environmental science</mark> and <mark data-hue="amber">agricultural expertise</mark> with <mark data-hue="cobalt">front-end development</mark>, <mark data-hue="teal">data visualization</mark> and <mark data-hue="thermal">practical AI</mark>.</p>
+    <div class="intro__actions" data-reveal>
+      <a class="btn" href="about.html" data-magnetic><span class="btn__label" data-roll>My story</span><span class="btn__arr" aria-hidden="true">→</span></a>
+      <a class="link-u" href="resume.html">View resume</a>
+      <p class="intro__note">Tucson, Arizona — working remotely. Available for select projects.</p>
+    </div>
+    </div>
+    <figure class="reel">
+      <div class="reel__frame" data-reveal="wipe" data-parallax>
+        <video autoplay muted loop playsinline preload="metadata" poster="assets/img/saguaro-hawk-poster.jpg" width="854" height="480" aria-label="A Harris's hawk perched on top of a saguaro against a blue sky" data-loop><source src="assets/img/saguaro-hawk.webm" type="video/webm"><source src="assets/img/saguaro-hawk.mp4" type="video/mp4"></video>
+      </div>
+      <figcaption class="note">A Harris's hawk on a saguaro, Mesa, Arizona.</figcaption>
+    </figure>
+    <ul class="facts">
+      <li class="fact" style="--hue:var(--lime)"><span class="fact__bar" aria-hidden="true"></span><p class="fact__n display" data-num="4">4</p><p class="fact__l">Platforms built and shipped</p></li>
+      <li class="fact" style="--hue:var(--amber)"><span class="fact__bar" aria-hidden="true"></span><p class="fact__n display" data-num="2023" data-from="1990">2023</p><p class="fact__l">OffsetMap founded</p></li>
+      <li class="fact" style="--hue:var(--cobalt)"><span class="fact__bar" aria-hidden="true"></span><p class="fact__n display" data-num="2025" data-from="1990">2025</p><p class="fact__l">NomadSwipe in development</p></li>
+      <li class="fact" style="--hue:var(--teal)"><span class="fact__bar" aria-hidden="true"></span><p class="fact__n display" data-num="32.2" data-dec="1" data-suf="°N">32.2°N</p><p class="fact__l">Tucson, in the Sonoran Desert</p></li>
+    </ul>
+    <figure class="photo">
+      <div class="photo__frame" data-reveal="wipe" data-parallax><img src="assets/img/sabino-canyon.jpg" width="1800" height="1350" alt="Saguaro cacti and green desert scrub below the Santa Catalina foothills in Sabino Canyon, under a blue sky with white clouds" loading="eager" decoding="async"></div>
+      <figcaption class="note">Sabino Canyon, in the Santa Catalina foothills above Tucson.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="work" id="work" data-chapter="night" aria-labelledby="work-title">
+  <div class="rail" data-rail>
+    <div class="rail__pin">
+      <div class="rail__head">
+        <h2 class="rail__title display" id="work-title">Things I've built</h2>
+        <a class="link-u rail__all" href="work.html">All projects</a>
+      </div>
+      <div class="rail__view">
+        <div class="rail__track">
+
+          <article class="cover" style="--hue:var(--p-offsetmap)" data-ink-from>
+            <h3 class="cover__word display">OffsetMap</h3>
+            <div class="cover__shot" data-shot>
+              <p class="cover__url note"><span class="cover__dots" aria-hidden="true"><span></span><span></span><span></span></span>offsetmap.com</p>
+              <div class="shot"><div class="shot__base"><img src="assets/img/offsetmap.jpg" width="1920" height="1080" alt="OffsetMap carbon project platform" loading="eager" decoding="async"></div><div class="shot__lens" aria-hidden="true"><img src="assets/img/offsetmap.jpg" width="1920" height="1080" alt="" loading="eager" decoding="async"></div></div>
+            </div>
+            <div class="cover__meta">
+              <p class="cover__role">Founder — Carbon-market data platform</p>
+              <p class="cover__desc">A web application for exploring complex carbon-offset information through accessible maps and visualizations, kept current as standards and registry data evolve.</p>
+              <ul class="tags"><li>Carbon Markets</li><li>Python</li><li>Maps</li></ul>
+              <a class="link-u" href="work.html#offsetmap" data-cursor="Open">Case study<span class="sr-only"> — OffsetMap</span></a>
+            </div>
+          </article>
+
+          <article class="cover" style="--hue:var(--p-salsav)" data-ink-from>
+            <h3 class="cover__word display">SALSAV</h3>
+            <div class="cover__shot" data-shot>
+              <p class="cover__url note"><span class="cover__dots" aria-hidden="true"><span></span><span></span><span></span></span>salsav.org</p>
+              <div class="shot shot--hero"><div class="shot__base"><img src="assets/img/salsav.jpg" width="1920" height="1080" alt="SALSAV Agrivoltaics website" loading="eager" decoding="async"></div><div class="shot__lens" aria-hidden="true"><img src="assets/img/salsav.jpg" width="1920" height="1080" alt="" loading="eager" decoding="async"></div></div>
+            </div>
+            <div class="cover__meta">
+              <p class="cover__role">Research Platform — University of Arizona</p>
+              <p class="cover__desc">A custom research-group website using interactive maps, animations and graphs to communicate recent agrivoltaics findings from the University of Arizona.</p>
+              <ul class="tags"><li>Agrivoltaics</li><li>Data Visualization</li><li>Research</li></ul>
+              <a class="link-u" href="work.html#salsav" data-cursor="View">See the work<span class="sr-only"> — SALSAV</span></a>
+            </div>
+          </article>
+
+          <article class="cover" style="--hue:var(--p-avsf)" data-ink-from>
+            <h3 class="cover__word display">AV sin Fronteras</h3>
+            <div class="cover__shot" data-shot>
+              <p class="cover__url note"><span class="cover__dots" aria-hidden="true"><span></span><span></span><span></span></span>avsinfronteras.org/archive</p>
+              <div class="shot"><div class="shot__base"><img src="assets/img/avs2.jpg" width="1920" height="1080" alt="AV sin Fronteras event archive with filters" loading="eager" decoding="async"></div><div class="shot__lens" aria-hidden="true"><img src="assets/img/avs2.jpg" width="1920" height="1080" alt="" loading="eager" decoding="async"></div></div>
+            </div>
+            <div class="cover__meta">
+              <p class="cover__role">Seminar Platform — Across the Americas</p>
+              <p class="cover__desc">A platform for an agrivoltaics seminar series, with interactive networking, paper recommendations, maps and forums designed to support exchange across the Americas.</p>
+              <ul class="tags"><li>Research Network</li><li>Recommendation Engine</li><li>Community</li></ul>
+              <a class="link-u" href="work.html#avsf" data-cursor="View">See the work<span class="sr-only"> — AV sin Fronteras</span></a>
+            </div>
+          </article>
+
+          <article class="cover" style="--hue:var(--p-nomad)" data-ink-from>
+            <h3 class="cover__word display">NomadSwipe</h3>
+            <div class="cover__shot" data-shot>
+              <p class="cover__url note"><span class="cover__dots" aria-hidden="true"><span></span><span></span><span></span></span>nomadswipe.com</p>
+              <div class="shot"><div class="shot__base"><img src="assets/img/nomadswipe.jpg" width="1920" height="1080" alt="NomadSwipe travel-planning product" loading="eager" decoding="async"></div><div class="shot__lens" aria-hidden="true"><img src="assets/img/nomadswipe.jpg" width="1920" height="1080" alt="" loading="eager" decoding="async"></div></div>
+            </div>
+            <div class="cover__meta">
+              <p class="cover__role">Founder &amp; Full-stack Developer — Sep 2025 to Present</p>
+              <p class="cover__desc">An ongoing React Native travel-planning product built and led end-to-end — product direction, interface, mobile development, backend, mapping and release work.</p>
+              <ul class="tags"><li>React Native</li><li>Full-stack</li><li>Founder</li></ul>
+              <a class="link-u" href="nomadswipe.html" data-cursor="Open">Product story<span class="sr-only"> — NomadSwipe</span></a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+      <div class="rail__prog" aria-hidden="true"><i></i></div>
     </div>
   </div>
+</section>
 
-  <!-- MANIFESTO -->
-  <section class="section wrap manifesto">
-    <span class="label" data-reveal>The short version</span>
-    <p class="word-reveal" style="margin-top:1.8rem">I combine environmental science and agricultural expertise with front-end development, data visualization and practical AI workflows.</p>
-    <div class="accent-row" data-reveal>
-      <a class="btn" href="about.html" data-magnetic="0.25">My story <span class="arr">→</span></a>
-      <a class="link-arrow" href="resume.html">View resume <span class="arr">↗</span></a>
+<section class="how" id="how" data-chapter="field" aria-labelledby="how-title">
+  <div class="how__in">
+    <div class="how__intro g12">
+      <h2 class="how__title" id="how-title" data-reveal>Science in.<br>Clarity <em>out.</em></h2>
+      <p class="t-lead how__lead" data-reveal>I move between research, data and implementation. That means reading standards and registry data, asking the economic and environmental questions, and then using code, front-end design and AI-assisted workflows to build maps, analyses or web tools that make the answer usable.</p>
     </div>
-  </section>
-
-  <!-- SELECTED WORK -->
-  <section class="section wrap">
-    <div class="work-head">
-      <div>
-        <span class="label" data-reveal>Selected work</span>
-        <h2 class="h-display h-lg" data-reveal style="margin-top:.8rem">Things I've<br><span class="outline">Built</span></h2>
+    <ol class="steps">
+      <li class="step" data-step="0">
+        <h3 class="step__name display" data-reveal>Evidence</h3>
+        <p class="step__meta" data-reveal>Research built on field data, literature and standards.</p>
+        <figure class="viz" data-viz="evidence"><svg viewBox="0 0 400 260" role="img" aria-label="Scatter plot of 120 plots: soil moisture rising with shade fraction under agrivoltaic panels, with a fitted line"></svg><figcaption class="note">Illustration: soil moisture against shade fraction under panels.</figcaption></figure>
+      </li>
+      <li class="step" data-step="1">
+        <h3 class="step__name display" data-reveal>Decisions</h3>
+        <p class="step__meta" data-reveal>Analysis of economics, data and scenarios.</p>
+        <figure class="viz" data-viz="decisions"><svg viewBox="0 0 400 260" role="img" aria-label="Scenario fan: five price and benefit paths diverging from one decision point, inside widening confidence bands"></svg><figcaption class="note">Illustration: five scenarios from one decision point.</figcaption></figure>
+      </li>
+      <li class="step" data-step="2">
+        <h3 class="step__name display" data-reveal>Access</h3>
+        <p class="step__meta" data-reveal>Product work in maps, visualizations and web tools.</p>
+        <figure class="viz" data-viz="access"><svg viewBox="0 0 400 260" role="img" aria-label="Mini map with contour rings, three pins and a route that a marker travels along"></svg><figcaption class="note">Illustration: three sites, one route, a legend of contours and pins.</figcaption></figure>
+      <div class="how__actions" data-reveal>
+        <a class="btn" href="about.html"><span class="btn__label" data-roll>My experience</span><span class="btn__arr" aria-hidden="true">→</span></a>
+        <a class="btn btn--ghost" href="resume.html"><span class="btn__label" data-roll>One-page resume</span><span class="btn__arr" aria-hidden="true">↗</span></a>
       </div>
-      <a class="btn" href="work.html" data-magnetic="0.25" data-reveal>All projects <span class="arr">→</span></a>
-    </div>
+      </li>
+    </ol>
+  </div>
+</section>
 
-    <div class="work-list">
-      <article class="work-item" data-reveal>
-        <div class="work-info">
-          <div class="work-idx">01 / Founder — Carbon-market data platform</div>
-          <h3 class="work-name">Offset<span class="lime">Map</span></h3>
-          <p class="work-desc">A web application for exploring complex carbon-offset information through accessible maps and visualizations, kept current as standards and registry data evolve.</p>
-          <div class="tags" style="margin-bottom:1.6rem"><span class="tag">Carbon Markets</span><span class="tag">Python</span><span class="tag">Maps</span></div>
-          <a class="link-arrow" href="work.html#offsetmap" data-cursor="Open">Case study <span class="arr">↗</span></a>
-        </div>
-        <div class="work-media" data-tag="Founder">
-          <div class="browser" data-tilt>
-            <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">offsetmap.com</span></div>
-            <div class="browser-shot"><img src="assets/img/offsetmap.jpg" alt="OffsetMap carbon project platform"></div>
-          </div>
+<section class="cap" id="capabilities" data-chapter="bone" aria-labelledby="cap-title">
+  <div class="cap__in">
+    <h2 class="cap__title" id="cap-title" data-reveal>Domain depth, practical output</h2>
+    <div class="acc" data-acc data-reveal>
+      <article class="acc__card is-open" style="--bg:var(--lime);--fg:var(--cocoa)" data-viz="carbon">
+        <h3 class="acc__h"><button class="acc__btn" type="button" id="acc-b1" aria-expanded="true" aria-controls="acc-p1"><span class="acc__v">Carbon Markets</span></button></h3>
+        <div class="acc__panel" id="acc-p1" role="region" aria-labelledby="acc-b1">
+          <p class="acc__t display" aria-hidden="true">Carbon Markets</p>
+          <p class="acc__p">Methodologies, pricing, project development, registry information and credit-retirement data.</p>
+          <svg class="acc__svg" viewBox="0 0 360 220" role="img" aria-label="A stepped credit-price line above bars of credits retired"></svg>
         </div>
       </article>
-
-      <article class="work-item" data-reveal>
-        <div class="work-info">
-          <div class="work-idx">02 / Research Platform — University of Arizona</div>
-          <h3 class="work-name">SALSAV</h3>
-          <p class="work-desc">A custom research-group website using interactive maps, animations and graphs to communicate recent agrivoltaics findings from the University of Arizona.</p>
-          <div class="tags" style="margin-bottom:1.6rem"><span class="tag">Agrivoltaics</span><span class="tag">Data Visualization</span><span class="tag">Research</span></div>
-          <a class="link-arrow" href="work.html#salsav" data-cursor="View">See the work <span class="arr">↗</span></a>
-        </div>
-        <div class="work-media" data-tag="Climate">
-          <div class="browser" data-tilt>
-            <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">salsav.org</span></div>
-            <div class="browser-shot"><img src="assets/img/salsav.jpg" alt="SALSAV Agrivoltaics website"></div>
-          </div>
+      <article class="acc__card" style="--bg:var(--amber);--fg:var(--cocoa)" data-viz="agri">
+        <h3 class="acc__h"><button class="acc__btn" type="button" id="acc-b2" aria-expanded="false" aria-controls="acc-p2"><span class="acc__v">Agriculture &amp; Climate</span></button></h3>
+        <div class="acc__panel" id="acc-p2" role="region" aria-labelledby="acc-b2">
+          <p class="acc__t display" aria-hidden="true">Agriculture &amp; Climate</p>
+          <p class="acc__p">Agrivoltaics, carbon farming, regenerative agriculture, agroecology and farm-level research.</p>
+          <svg class="acc__svg" viewBox="0 0 360 220" role="img" aria-label="A row of solar panels tilting to follow the sun along its arc"></svg>
         </div>
       </article>
-
-      <article class="work-item" data-reveal>
-        <div class="work-info">
-          <div class="work-idx">03 / Seminar Platform — Across the Americas</div>
-          <h3 class="work-name">AV sin Fronteras</h3>
-          <p class="work-desc">A platform for an agrivoltaics seminar series, with interactive networking, paper recommendations, maps and forums designed to support exchange across the Americas.</p>
-          <div class="tags" style="margin-bottom:1.6rem"><span class="tag">Research Network</span><span class="tag">Recommendation Engine</span><span class="tag">Community</span></div>
-          <a class="link-arrow" href="work.html#avsf" data-cursor="View">See the work <span class="arr">↗</span></a>
-        </div>
-        <div class="work-media" data-tag="Platform">
-          <div class="browser" data-tilt>
-            <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">avsinfronteras.org</span></div>
-            <div class="browser-shot"><img src="assets/img/avs.jpg" alt="Agrovoltaicos sin Fronteras platform"></div>
-          </div>
+      <article class="acc__card" style="--bg:var(--cobalt);--fg:var(--chalk)" data-viz="research">
+        <h3 class="acc__h"><button class="acc__btn" type="button" id="acc-b3" aria-expanded="false" aria-controls="acc-p3"><span class="acc__v">Research &amp; Economics</span></button></h3>
+        <div class="acc__panel" id="acc-p3" role="region" aria-labelledby="acc-b3">
+          <p class="acc__t display" aria-hidden="true">Research &amp; Economics</p>
+          <p class="acc__p">Applied research, market analysis, cost-benefit work and clear findings built around evidence.</p>
+          <svg class="acc__svg" viewBox="0 0 360 220" role="img" aria-label="A distribution curve with sample points settling into it"></svg>
         </div>
       </article>
-
-      <article class="work-item" data-reveal>
-        <div class="work-info">
-          <div class="work-idx">04 / Founder & Full-stack Developer — Sep 2025 to Present</div>
-          <h3 class="work-name">Nomad<span class="org">Swipe</span></h3>
-          <p class="work-desc">An ongoing React Native travel-planning product built and led end-to-end — product direction, interface, mobile development, backend, mapping and release work.</p>
-          <div class="tags" style="margin-bottom:1.6rem"><span class="tag">React Native</span><span class="tag">Full-stack</span><span class="tag">Founder</span></div>
-          <a class="link-arrow" href="nomadswipe.html" data-cursor="Open">Product story <span class="arr">↗</span></a>
-        </div>
-        <div class="work-media" data-tag="Ongoing">
-          <div class="browser" data-tilt>
-            <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">nomadswipe.com</span></div>
-            <div class="browser-shot"><img src="assets/img/nomadswipe.jpg" alt="NomadSwipe travel-planning product"></div>
-          </div>
+      <article class="acc__card" style="--bg:var(--thermal);--fg:var(--cocoa)" data-viz="data">
+        <h3 class="acc__h"><button class="acc__btn" type="button" id="acc-b4" aria-expanded="false" aria-controls="acc-p4"><span class="acc__v">Data, AI &amp; Front-end</span></button></h3>
+        <div class="acc__panel" id="acc-p4" role="region" aria-labelledby="acc-b4">
+          <p class="acc__t display" aria-hidden="true">Data, AI &amp; Front-end</p>
+          <p class="acc__p">Python, JavaScript, SQL, AI-assisted research workflows, interactive maps and accessible front-end experiences.</p>
+          <svg class="acc__svg" viewBox="0 0 360 220" role="img" aria-label="A grid of nodes wiring up, with pulses travelling along the links"></svg>
         </div>
       </article>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- WORKING METHOD -->
-  <section class="section nomad-banner">
-    <div class="wrap nomad-grid">
-      <div>
-        <span class="label" data-reveal style="color:var(--org)">How I work</span>
-        <h2 class="h-display h-lg" data-reveal style="margin:.9rem 0 1.4rem">Science in.<br>Clarity <span class="org">out.</span></h2>
-        <p class="lead" data-reveal>I move between research, data and implementation. That means reading standards and registry data, asking the economic and environmental questions, and then using code, front-end design and AI-assisted workflows to build maps, analyses or web tools that make the answer usable.</p>
-        <div class="accent-row" data-reveal style="margin-top:2.2rem;display:flex;gap:1.2rem;flex-wrap:wrap">
-          <a class="btn orange" href="about.html" data-magnetic="0.25">Experience <span class="arr">→</span></a>
-          <a class="btn" href="resume.html" data-magnetic="0.25">One-page resume <span class="arr">↗</span></a>
-        </div>
-      </div>
-      <div class="deck-visual" data-reveal="scale">
-        <div class="deck-card c1 deck-float" style="animation-delay:.6s">
-          <span class="dc-cat">Research</span><span class="dc-name">Evidence</span><span class="dc-meta">Field data · literature · standards</span>
-        </div>
-        <div class="deck-card c2 deck-float" style="animation-delay:1.2s">
-          <span class="dc-cat">Analysis</span><span class="dc-name">Decisions</span><span class="dc-meta">Economics · data · scenarios</span>
-        </div>
-        <div class="deck-card c3 deck-float">
-          <span class="dc-cat" style="color:var(--org)">Product</span><span class="dc-name">Access</span><span class="dc-meta">Maps · visualizations · web tools</span>
-        </div>
-        <div class="swipe-badge">One workflow across disciplines →</div>
-      </div>
+<section class="cta" data-chapter="ember" aria-labelledby="cta-title">
+  <h2 class="cta__title" id="cta-title" data-offset-type>Let's make it<br>clearer</h2>
+  <div class="cta__base">
+    <p class="cta__note">Working on climate, agriculture or&nbsp;carbon?</p>
+    <div class="cta__act">
+      <a class="cta__mail link-u" href="mailto:georgichertkov@gmail.com" data-roll>georgichertkov@gmail.com</a>
+      <button class="btn cta__copy" type="button" data-copy="georgichertkov@gmail.com"><span class="btn__label">Copy</span></button>
     </div>
-  </section>
-
-  <!-- CAPABILITIES -->
-  <section class="section wrap">
-    <span class="label" data-reveal>What I do</span>
-    <h2 class="h-display h-md" data-reveal style="margin:.9rem 0 3rem">Domain depth, practical output</h2>
-    <div class="cap-grid" data-stagger>
-      <div class="cap"><div class="num">/01</div><h3>Carbon Markets</h3><p>Methodologies, pricing, project development, registry information and credit-retirement data.</p></div>
-      <div class="cap"><div class="num">/02</div><h3>Agriculture & Climate</h3><p>Agrivoltaics, carbon farming, regenerative agriculture, agroecology and farm-level research.</p></div>
-      <div class="cap"><div class="num">/03</div><h3>Research & Economics</h3><p>Applied research, market analysis, cost-benefit work and clear findings built around evidence.</p></div>
-      <div class="cap"><div class="num">/04</div><h3>Data, AI & Front-end</h3><p>Python, JavaScript, SQL, AI-assisted research workflows, interactive maps and accessible front-end experiences.</p></div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-cta" data-reveal>
-      <span class="label no-dash" style="justify-content:center;width:100%">Working on climate, agriculture or carbon?</span>
-      <a href="mailto:georgichertkov@gmail.com" data-cursor="Say hi">
-        <h2 class="h-display" style="margin-top:1rem">Let's make it<br><span class="outline">clearer</span></h2>
-      </a>
-    </div>
-    <div class="marquee rev">
-      <div class="marquee-track"><span>georgichertkov@gmail.com</span><span>LinkedIn / georgichertkov</span><span>Tucson — Remote</span></div>
-    </div>
-    <div class="footer-grid">
-      <span>© <span data-year>2026</span> Georgi Chertkov</span>
-      <div class="footer-socials">
-        <a href="https://www.linkedin.com/in/georgichertkov/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="mailto:georgichertkov@gmail.com">Email</a>
-        <a href="https://www.offsetmap.com" target="_blank" rel="noopener">OffsetMap</a>
-        <a href="https://nomadswipe.com" target="_blank" rel="noopener">NomadSwipe</a>
-      </div>
-      <span>Made with contour lines</span>
-    </div>
-    <div class="big-bg-text">Chertkov</div>
-  </footer>
-
+  </div>
+</section>
 </main>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
-<script src="assets/js/shared.js"></script>
-<script src="assets/js/home.js"></script>
-<script>
-  /* preloader */
-  (function(){
-    const name = 'GEORGI CHERTKOV';
-    const box = document.getElementById('preName');
-    box.innerHTML = name.split('').map((c,i)=>`<span style="animation-delay:${0.04*i}s" class="${c===' '?'sp':''}">${c===' '?'':c}</span>`).join('');
-    const count = document.getElementById('preCount');
-    const bar = document.getElementById('preBar');
-    const pre = document.getElementById('preloader');
-    let p = 0;
-    const t0 = performance.now();
-    (function tick(t){
-      p = Math.min(100, Math.round((t - t0) / 14));
-      count.textContent = String(p).padStart(2,'0');
-      bar.style.width = p + '%';
-      if (p < 100) requestAnimationFrame(tick);
-      else setTimeout(()=>{
-        pre.style.transition = 'transform 1s cubic-bezier(.87,0,.13,1)';
-        pre.style.transform = 'translateY(-100%)';
-        pre.classList.add('done');
-        setTimeout(()=>pre.remove(), 1100);
-      }, 250);
-    })(t0);
-  })();
+<footer class="foot" data-chapter="night">
+  <div class="bands bands--foot" aria-hidden="true"><div class="band band--lime" style="--dur:48s"><div class="band__group">georgichertkov@gmail.com <svg class="band__sun" aria-hidden="true"></svg> LinkedIn / georgichertkov <svg class="band__sun" aria-hidden="true"></svg> Tucson — Remote <svg class="band__sun" aria-hidden="true"></svg></div></div></div>
+  <div class="foot__row">
+    <p>© <span data-year>2026</span> Georgi Chertkov</p>
+    <ul class="foot__links">
+      <li><a class="link-u" href="https://www.linkedin.com/in/georgichertkov/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a class="link-u" href="mailto:georgichertkov@gmail.com">Email</a></li>
+      <li><a class="link-u" href="https://www.offsetmap.com" target="_blank" rel="noopener">OffsetMap</a></li>
+      <li><a class="link-u" href="https://nomadswipe.com" target="_blank" rel="noopener">NomadSwipe</a></li>
+    </ul>
+    <p>Tucson <span data-clock></span> · <span data-sunline></span></p>
+  </div>
+  <p class="foot__name" aria-hidden="true">Georgi Chertkov</p>
+  <p class="foot__credits">Photo: <a class="link-u" href="https://commons.wikimedia.org/w/index.php?curid=1967960" target="_blank" rel="noopener">“Bear Canyon Trail at Sabino Canyon”</a> by Jon Abbott, <a class="link-u" href="https://creativecommons.org/licenses/by/2.5/" target="_blank" rel="noopener">CC BY 2.5</a>, via Wikimedia Commons. Clip: <a class="link-u" href="https://commons.wikimedia.org/wiki/File:Parabuteo_unicinctus_calling.webm" target="_blank" rel="noopener">“Parabuteo unicinctus calling”</a> by @PeterChenW, <a class="link-u" href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener">CC BY 4.0</a>, via Wikimedia Commons.</p>
+</footer>
 
-  /* role rotator */
-  (function(){
-    const items = [...document.querySelectorAll('#roleSwap i')];
-    let i = 0;
-    setInterval(()=>{
-      const cur = items[i];
-      i = (i+1) % items.length;
-      const nxt = items[i];
-      cur.classList.remove('on'); cur.classList.add('out');
-      nxt.classList.remove('out'); nxt.classList.add('on');
-      setTimeout(()=>cur.classList.remove('out'), 500);
-    }, 2600);
-  })();
-</script>
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="assets/js/sun.js" defer></script>
+<script src="assets/js/shared.js" defer></script>
+<script src="assets/js/topo2d.js" defer></script>
+<script src="assets/js/hero-terrain.js" defer></script>
+<script src="assets/js/home.js" defer></script>
 </body>
 </html>

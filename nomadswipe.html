@@ -1,234 +1,132 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NomadSwipe — Founder-led React Native Product by Georgi Chertkov</title>
-<meta name="description" content="NomadSwipe is an ongoing travel-planning product founded by Georgi Chertkov in September 2025 and built end-to-end in React Native.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230A0B08'/><text x='50' y='68' font-size='52' font-family='Arial Black' font-weight='900' fill='%23C9F24F' text-anchor='middle'>G</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NomadSwipe — Georgi Chertkov</title>
+<meta name="description" content="NomadSwipe is an ongoing travel-planning product founded by Georgi Chertkov in September 2025 and built end-to-end in React Native. Swipe places, map what you save, plan together.">
+<meta property="og:title" content="NomadSwipe — Georgi Chertkov"><meta property="og:description" content="A swipe-based travel-planning app founded by Georgi Chertkov in September 2025 and built end-to-end in React Native.">
+<meta property="og:image" content="https://georgichertkov.com/assets/img/og.jpg"><meta property="og:type" content="website">
+<meta name="theme-color" content="#0c0e0b">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@800&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/main.css">
-<style>
-  :root{--accent:var(--org)}
-  .ns-hero{padding-top:clamp(9rem,22vh,13rem);position:relative;overflow:hidden}
-  .ns-hero::before{content:'';position:absolute;width:70vw;height:70vw;border-radius:50%;background:radial-gradient(circle,rgba(255,106,61,.13),transparent 62%);top:-30vw;left:-20vw;pointer-events:none}
-  .ns-hero-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center}
-  .ns-shot{position:relative}
-  .ns-shot .browser{transform:rotate(2deg)}
-  .pill-live{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;border:1px solid rgba(255,106,61,.45);color:var(--org);padding:.5rem 1.1rem;border-radius:99px}
-  .pill-live i{width:8px;height:8px;border-radius:50%;background:var(--org);animation:blink 1.6s infinite}
-  @keyframes blink{50%{opacity:.25}}
-
-  /* --- interactive deck --- */
-  .demo-sec{background:linear-gradient(180deg,var(--bg) 0%,#140d07 50%,var(--bg) 100%);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center}
-  #swipeDeck{position:relative;height:480px;touch-action:none}
-  .sw-card{
-    position:absolute;left:50%;top:50%;width:min(310px,80%);aspect-ratio:3/4.05;
-    margin-left:calc(min(310px,80%)/-2);margin-top:-200px;
-    border-radius:24px;border:1px solid rgba(239,237,228,.16);
-    padding:1.5rem;display:flex;flex-direction:column;justify-content:space-between;
-    cursor:grab;user-select:none;box-shadow:0 34px 70px -22px rgba(0,0,0,.8);
-    touch-action:none;
-  }
-  .sw-card:active{cursor:grabbing}
-  .sw-icon{font-size:3.4rem;filter:drop-shadow(0 8px 18px rgba(0,0,0,.5))}
-  .sw-cat{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--org)}
-  .sw-info h4{font-family:var(--font-display);font-weight:700;font-size:1.7rem;margin:.35rem 0}
-  .sw-meta{font-family:var(--font-mono);font-size:11px;color:rgba(239,237,228,.75)}
-  .sw-stamp{
-    position:absolute;top:1.4rem;font-family:var(--font-display);font-weight:800;font-size:1.6rem;
-    padding:.25rem .8rem;border:3px solid;border-radius:10px;opacity:0;letter-spacing:.05em;
-  }
-  .sw-stamp.save{right:1.2rem;color:var(--lime);border-color:var(--lime);transform:rotate(14deg)}
-  .sw-stamp.pass{left:1.2rem;color:var(--org);border-color:var(--org);transform:rotate(-14deg)}
-  .demo-controls{display:flex;gap:1rem;justify-content:center;margin-top:1.6rem}
-  .round-btn{
-    width:64px;height:64px;border-radius:50%;border:1px solid var(--line);font-size:1.5rem;
-    display:flex;align-items:center;justify-content:center;transition:.35s;background:rgba(255,255,255,.02);
-  }
-  .round-btn:hover{transform:scale(1.1)}
-  .round-btn.no:hover{border-color:var(--org);background:rgba(255,106,61,.12)}
-  .round-btn.yes:hover{border-color:var(--lime);background:rgba(201,242,79,.12)}
-  .round-btn.small{width:48px;height:48px;font-size:1rem}
-  .demo-score{display:flex;gap:2.4rem;margin-top:1.8rem;justify-content:center;font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
-  .demo-score b{color:var(--ink);font-size:1.4rem;display:block;text-align:center}
-  #vibeReadout{
-    margin-top:1.4rem;text-align:center;font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;
-    color:var(--org);min-height:1.4em;text-transform:uppercase;
-  }
-  #vibeReadout.pulse{animation:pulse .6s var(--ease-out)}
-  @keyframes pulse{0%{transform:scale(.92);opacity:.4}100%{transform:scale(1);opacity:1}}
-
-  /* --- engine bars --- */
-  .engine-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center}
-  .bars{display:flex;flex-direction:column;gap:1.3rem}
-  .bar-row .bar-top{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:.5rem}
-  .bar-row .bar-top b{color:var(--org)}
-  .bar-track{height:8px;background:rgba(255,255,255,.05);border-radius:99px;overflow:hidden}
-  .bar-fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--org),#ffb03a);transition:width 1.4s var(--ease-exp)}
-  .in .bar-fill{width:var(--w)}
-
-  /* --- flow steps --- */
-  .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-2);border:1px solid var(--line-2)}
-  .flow-step{background:var(--bg);padding:2.4rem 2rem;position:relative;transition:background .4s}
-  .flow-step:hover{background:var(--panel)}
-  .flow-step .num{font-family:var(--font-display);font-weight:800;font-size:3rem;color:transparent;-webkit-text-stroke:1.2px var(--org);line-height:1}
-  .flow-step h3{font-family:var(--font-display);font-weight:700;font-size:1.4rem;margin:1.2rem 0 .8rem;text-transform:uppercase}
-  .flow-step p{color:var(--mut);font-size:.95rem}
-
-  /* --- compare --- */
-  .compare{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.4rem,3vw,2.6rem)}
-  .cmp{border:1px solid var(--line);border-radius:18px;padding:2.2rem}
-  .cmp.old{opacity:.75}
-  .cmp.new{border-color:rgba(255,106,61,.5);background:linear-gradient(160deg,rgba(255,106,61,.06),transparent 60%)}
-  .cmp h3{font-family:var(--font-display);font-weight:700;font-size:1.3rem;text-transform:uppercase;margin-bottom:1.4rem}
-  .cmp li{display:flex;gap:.9rem;padding:.7rem 0;border-bottom:1px solid var(--line-2);color:var(--ink-dim);font-size:.98rem}
-  .cmp.old li::before{content:'✕';color:#e5533a;flex-shrink:0}
-  .cmp.new li::before{content:'✓';color:var(--lime);flex-shrink:0}
-  .cmp li:last-child{border-bottom:none}
-
-  /* --- scenarios --- */
-  .scen{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
-  .scen-card{border:1px solid var(--line);border-radius:18px;padding:2rem;transition:transform .5s var(--ease-out),border-color .4s}
-  .scen-card:hover{transform:translateY(-8px);border-color:rgba(255,106,61,.5)}
-  .scen-card .emo{font-size:2.2rem}
-  .scen-card h3{font-family:var(--font-display);font-weight:700;font-size:1.25rem;text-transform:uppercase;margin:1rem 0 .7rem}
-  .scen-card p{color:var(--mut);font-size:.93rem}
-
-  /* --- faq --- */
-  .faq{max-width:860px;margin:0 auto}
-  .faq-item{border-bottom:1px solid var(--line)}
-  .faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:2rem;padding:1.6rem 0;text-align:left;font-family:var(--font-display);font-weight:700;font-size:clamp(1.05rem,2vw,1.35rem);transition:color .3s}
-  .faq-q:hover{color:var(--org)}
-  .faq-q .pm{font-family:var(--font-mono);color:var(--org);font-size:1.4rem;transition:transform .4s var(--ease-exp);flex-shrink:0}
-  .faq-item.open .pm{transform:rotate(45deg)}
-  .faq-a{max-height:0;overflow:hidden;transition:max-height .55s var(--ease-exp)}
-  .faq-a p{padding:0 0 1.6rem;color:var(--ink-dim);max-width:60ch}
-
-  /* --- download --- */
-  .dl{border-top:1px solid var(--line);text-align:center;position:relative;overflow:hidden}
-  .dl::before{content:'';position:absolute;width:50vw;height:50vw;border-radius:50%;background:radial-gradient(circle,rgba(255,106,61,.12),transparent 60%);bottom:-30vw;left:50%;transform:translateX(-50%);pointer-events:none}
-  .store-btns{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;margin-top:2.4rem}
-  .store-btn{display:flex;align-items:center;gap:1rem;border:1px solid var(--line);border-radius:16px;padding:1rem 1.8rem;transition:.35s;text-align:left}
-  .store-btn:hover{border-color:var(--org);background:rgba(255,106,61,.07);transform:translateY(-3px)}
-  .store-btn .ic{font-size:1.8rem}
-  .store-btn small{display:block;font-family:var(--font-mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
-  .store-btn b{font-family:var(--font-display);font-size:1.15rem}
-  .store-btn.soon{opacity:.55;cursor:default}
-  .store-btn.soon:hover{transform:none;border-color:var(--line);background:none}
-
-  @media(max-width:900px){
-    .ns-hero-grid,.demo-grid,.engine-grid{grid-template-columns:1fr}
-    .flow,.scen,.compare{grid-template-columns:1fr}
-    #swipeDeck{height:440px}
-  }
-</style>
+<link rel="stylesheet" href="assets/css/nomadswipe.css">
+<script>(function(d){if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('motion');setTimeout(function(){if(!window.gsap)d.classList.remove('motion')},3500)}})(document.documentElement)</script>
 </head>
 <body>
-
-<header class="nav">
-  <a href="index.html" class="nav-logo"><span class="dot"></span>GC<span style="font-family:var(--font-mono);font-size:10px;color:var(--lime)">©26</span></a>
-  <nav class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="work.html">Work</a>
-    <a href="resume.html">Resume</a>
-    <a href="about.html">About</a>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" data-nav>
+  <a class="nav__mark" href="index.html" aria-label="Georgi Chertkov — home">
+    <svg class="sunmark" viewBox="0 0 28 16" aria-hidden="true"><path class="sunmark__arc" d="M2 14 A12 12 0 0 1 26 14"/><circle class="sunmark__sun" cx="14" cy="2" r="2.4"/></svg>
+    <span>Georgi Chertkov</span>
+  </a>
+  <nav class="nav__links" aria-label="Primary">
+    <a href="work.html" data-scramble>Work</a>
+    <a href="resume.html" data-scramble>Resume</a>
+    <a href="about.html" data-scramble>About</a>
   </nav>
-  <button class="nav-burger" aria-label="menu"><i></i><i></i></button>
+  <button class="nav__menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
 </header>
-<div class="menu-overlay">
-  <a href="index.html">Home<small>01</small></a>
-  <a href="work.html">Work<small>02</small></a>
-  <a href="resume.html">Resume<small>03</small></a>
-  <a href="about.html">About<small>04</small></a>
-  <div class="menu-meta">georgichertkov@gmail.com — Tucson AZ / Remote</div>
+<div class="menu" id="menu" hidden>
+  <nav class="menu__links" aria-label="Menu">
+    <a href="index.html">Home</a><a href="work.html">Work</a><a href="resume.html">Resume</a><a href="about.html">About</a>
+  </nav>
+  <p class="menu__meta"><a href="mailto:georgichertkov@gmail.com">georgichertkov@gmail.com</a><a href="https://www.linkedin.com/in/georgichertkov/" target="_blank" rel="noopener">LinkedIn</a><span>Tucson, Arizona · <span data-clock></span></span><span data-sunline></span></p>
 </div>
 
-<main class="page">
-
+<main id="main">
   <!-- HERO -->
-  <section class="ns-hero wrap section">
-    <div class="ns-hero-grid">
-      <div>
-        <span class="pill-live" data-reveal><i></i>Founder-led · Ongoing since Sep 2025</span>
-        <h1 class="h-display h-xl" data-reveal style="margin:1.4rem 0">Swipe it.<br>Map it.<br><span class="org">Go.</span></h1>
-        <p class="lead" data-reveal>I founded NomadSwipe in September 2025 and continue to build it end-to-end in React Native — product direction, design, mobile development, backend systems, recommendation logic, maps, releases and maintenance.</p>
-        <div style="display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:2.4rem" data-reveal>
-          <a class="btn orange" href="https://play.google.com/store/apps/details?id=com.gchertkov.SwipeNomad" target="_blank" rel="noopener" data-magnetic="0.25">View Android listing <span class="arr">↗</span></a>
-          <a class="btn" href="#demo" data-magnetic="0.25">Try the demo ↓</a>
+  <section class="nh" data-chapter="night" data-cursor-mode="lens" aria-labelledby="nh-title">
+    <canvas data-topo data-topo-seed="nomad-25" data-topo-ridge="0.8,0.5" aria-hidden="true"></canvas>
+    <div class="nh__in">
+      <div class="nh__copy" data-reveal-group>
+        <p class="nh__tag" data-reveal><i aria-hidden="true"></i>Founder-led · Ongoing since Sep 2025 · Built in React&nbsp;Native</p>
+        <h1 class="display nh__title" id="nh-title" data-reveal>Swipe it.<br>Map it. <span>Go.</span></h1>
+        <p class="t-lead nh__lead" data-reveal>I founded NomadSwipe in September 2025 and continue to build it end-to-end in React Native — product direction, design, mobile development, backend systems, recommendation logic, maps, releases and maintenance.</p>
+        <div class="nh__act" data-reveal>
+          <a class="btn" href="https://play.google.com/store/apps/details?id=com.gchertkov.SwipeNomad" target="_blank" rel="noopener" data-magnetic><span class="btn__label" data-roll>View Android listing</span><span class="btn__arr btn__arr--ne" aria-hidden="true">↗</span></a>
+          <a class="btn btn--ghost" href="#demo"><span class="btn__label" data-roll>Try the demo</span><span class="btn__arr" aria-hidden="true">↓</span></a>
         </div>
       </div>
-      <div class="ns-shot" data-reveal="right">
-        <div class="browser" data-tilt>
-          <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">nomadswipe.com</span></div>
-          <div class="browser-shot"><img src="assets/img/nomadswipe.jpg" alt="NomadSwipe product site with phone mockup"></div>
+      <div class="nh__phone" id="demo" data-reveal>
+        <div class="phone" data-tilt="phone">
+          <div class="phone__body">
+            <div class="phone__screen">
+              <div class="deck" id="swipeDeck" role="group" aria-label="Swipe deck of places. Press the right arrow to save and the left arrow to pass." tabindex="0"></div>
+              <div class="phone__read" role="status">
+                <p class="phone__score"><span>Saved <b id="savedCount">0</b></span><span>Passed <b id="passedCount">0</b></span></p>
+                <p class="phone__vibe" id="vibeReadout">Swipe to teach me your vibe</p>
+              </div>
+              <div class="phone__ctl">
+                <button class="btn btn--ghost" type="button" id="btnPass"><span class="btn__label">Pass</span></button>
+                <button class="btn btn--ghost" type="button" id="btnReset" aria-label="Reset the deck"><span class="btn__label">Reset</span></button>
+                <button class="btn" type="button" id="btnSave"><span class="btn__label">Save</span></button>
+              </div>
+            </div>
+          </div>
         </div>
+        <p class="note nh__hint">Drag a card, use the arrow keys, or tap the buttons. Sample deck: ratings and distances are illustrative.</p>
       </div>
     </div>
   </section>
 
-  <!-- INTERACTIVE DEMO -->
-  <section class="section demo-sec" id="demo">
-    <div class="wrap demo-grid">
-      <div>
-        <span class="label" data-reveal style="color:var(--org)">Live demo — drag the cards</span>
-        <h2 class="h-display h-lg" data-reveal style="margin:.9rem 0 1.4rem">The core<br><span class="outline">loop</span></h2>
-        <p class="lead" data-reveal>Right to save, left to pass. This browser prototype mirrors the product's primary decision pattern; the counters and preference readout are local to this demo.</p>
-        <div class="demo-score" data-reveal>
-          <div><b id="savedCount" class="lime">0</b>Saved</div>
-          <div><b id="passedCount" class="org">0</b>Passed</div>
-        </div>
-        <div id="vibeReadout">Swipe to teach me your vibe</div>
-      </div>
-      <div data-reveal="scale">
-        <div id="swipeDeck"></div>
-        <div class="demo-controls">
-          <button class="round-btn no" id="btnPass" aria-label="pass">✕</button>
-          <button class="round-btn small" id="btnReset" aria-label="reset">↺</button>
-          <button class="round-btn yes" id="btnSave" aria-label="save">♥</button>
-        </div>
-      </div>
+  <!-- CORE LOOP: K72 sticky process cards -->
+  <section class="loop" data-chapter="bone" aria-labelledby="loop-title">
+    <div class="loop__intro">
+      <h2 class="t-head" id="loop-title" data-reveal="lines">The core loop</h2>
+      <p class="t-lead" data-reveal>Right to save, left to pass. This browser prototype mirrors the product's primary decision pattern; the counters and preference readout are local to this demo.</p>
     </div>
+    <ol class="steps">
+      <li class="step" style="--hue:var(--thermal)">
+        <h3>Review</h3>
+        <p>Look at one place at a time in a compact visual deck instead of comparing many browser tabs.</p>
+      </li>
+      <li class="step" style="--hue:var(--teal)">
+        <h3>Save &amp; Map</h3>
+        <p>Saved places appear on a trip map so geographic clusters and practical routes are easier to see.</p>
+      </li>
+      <li class="step" style="--hue:var(--amber)">
+        <h3>Compare Together</h3>
+        <p>Group planning tools bring individual choices into one shared view for a clearer conversation.</p>
+      </li>
+    </ol>
   </section>
 
-  <!-- ENGINE -->
-  <section class="section wrap">
-    <div class="engine-grid">
-      <div>
-        <span class="label" data-reveal>Preference model</span>
-        <h2 class="h-display h-lg" data-reveal style="margin:.9rem 0 1.4rem">Discovery shaped<br>by your <span class="org">choices</span></h2>
-        <p class="lead" data-reveal>Users can rank broad categories and choose more specific preferences such as boutique hotels, dive bars or third-wave coffee. Those inputs weight the deck before the first swipe and keep the experience focused.</p>
-        <div class="tags" style="margin-top:1.8rem" data-reveal><span class="tag">Weighted deck</span><span class="tag">Sub-vibes</span><span class="tag">Category ranking</span><span class="tag">Map organization</span></div>
-      </div>
-      <div class="bars" data-stagger id="engineBars">
-        <div class="bar-row"><div class="bar-top"><span>🍜 Restaurants</span><b>40%</b></div><div class="bar-track"><div class="bar-fill" style="--w:40%"></div></div></div>
-        <div class="bar-row"><div class="bar-top"><span>🌃 Nightlife</span><b>25%</b></div><div class="bar-track"><div class="bar-fill" style="--w:25%"></div></div></div>
-        <div class="bar-row"><div class="bar-top"><span>🏜️ Attractions</span><b>20%</b></div><div class="bar-track"><div class="bar-fill" style="--w:20%"></div></div></div>
-        <div class="bar-row"><div class="bar-top"><span>🏨 Hotels</span><b>15%</b></div><div class="bar-track"><div class="bar-fill" style="--w:15%"></div></div></div>
-      </div>
+  <!-- FEATURE 1: preference model -->
+  <section class="fe fe1" data-chapter="field" aria-labelledby="fe1-title">
+    <div class="fe1__copy" data-reveal-group>
+      <h2 class="t-head" id="fe1-title" data-reveal="lines">Discovery shaped<br>by your choices</h2>
+      <p class="t-lead" data-reveal>Users can rank broad categories and choose more specific preferences such as boutique hotels, dive bars or third-wave coffee. Those inputs weight the deck before the first swipe and keep the experience focused.</p>
+      <ul class="inl" data-reveal><li>Weighted deck</li><li>Sub-vibes</li><li>Category ranking</li><li>Map organization</li></ul>
     </div>
+    <ul class="bars" id="engineBars">
+      <li class="bar" style="--w:40%;--hue:var(--thermal)"><p class="bar__top"><span>Restaurants</span><b class="num" data-count="40" data-suf="%">40%</b></p><span class="bar__track"><i class="bar__fill"></i></span></li>
+      <li class="bar" style="--w:25%;--hue:var(--magenta)"><p class="bar__top"><span>Nightlife</span><b class="num" data-count="25" data-suf="%">25%</b></p><span class="bar__track"><i class="bar__fill"></i></span></li>
+      <li class="bar" style="--w:20%;--hue:var(--amber)"><p class="bar__top"><span>Attractions</span><b class="num" data-count="20" data-suf="%">20%</b></p><span class="bar__track"><i class="bar__fill"></i></span></li>
+      <li class="bar" style="--w:15%;--hue:var(--teal)"><p class="bar__top"><span>Hotels</span><b class="num" data-count="15" data-suf="%">15%</b></p><span class="bar__track"><i class="bar__fill"></i></span></li>
+    </ul>
   </section>
 
-  <!-- FLOW -->
-  <section class="section wrap">
-    <span class="label" data-reveal>The NomadSwipe flow</span>
-    <h2 class="h-display h-md" data-reveal style="margin:.9rem 0 3rem">Discovery without the drag</h2>
-    <div class="flow" data-stagger>
-      <div class="flow-step"><div class="num">01</div><h3>Review</h3><p>Look at one place at a time in a compact visual deck instead of comparing many browser tabs.</p></div>
-      <div class="flow-step"><div class="num">02</div><h3>Save & Map</h3><p>Saved places appear on a trip map so geographic clusters and practical routes are easier to see.</p></div>
-      <div class="flow-step"><div class="num">03</div><h3>Compare Together</h3><p>Group planning tools bring individual choices into one shared view for a clearer conversation.</p></div>
-    </div>
+  <!-- FEATURE 2: the flow, with the real product shot -->
+  <section class="fe fe2" data-chapter="bone" aria-labelledby="fe2-title">
+    <h2 class="t-head" id="fe2-title" data-reveal="lines">Discovery without the drag</h2>
+    <figure class="fe2__shot" data-reveal="wipe">
+      <div class="cover" data-spot style="--spot:var(--p-nomad)">
+        <picture>
+        <source media="(max-width:899px)" srcset="assets/img/nomadswipe-phone2.jpg" width="620" height="660">
+        <img src="assets/img/nomadswipe-flow.jpg" width="1896" height="1066" loading="lazy" decoding="async" alt="NomadSwipe product site with phone mockup">
+        </picture>
+      </div>
+      <figcaption class="note">The NomadSwipe flow</figcaption>
+    </figure>
   </section>
 
-  <!-- COMPARE -->
-  <section class="section wrap">
-    <span class="label" data-reveal>The alternative</span>
-    <h2 class="h-display h-md" data-reveal style="margin:.9rem 0 3rem">Planning shouldn't be<br>a part-time job</h2>
-    <div class="compare" data-stagger>
-      <div class="cmp old">
+  <!-- FEATURE 3: the alternative -->
+  <section class="fe fe3" data-chapter="night" aria-labelledby="fe3-title">
+    <h2 class="t-head" id="fe3-title" data-reveal="lines">Planning shouldn't be<br>a part-time job</h2>
+    <div class="cmp" data-reveal-group>
+      <div class="cmp__old panel" data-reveal>
         <h3>The old way</h3>
         <ul>
           <li>Group chat goes silent when asked "where to eat?"</li>
@@ -237,8 +135,8 @@
           <li>A messy spreadsheet nobody actually looks at</li>
         </ul>
       </div>
-      <div class="cmp new">
-        <h3 class="org">NomadSwipe</h3>
+      <div class="cmp__new panel" data-reveal>
+        <h3>NomadSwipe</h3>
         <ul>
           <li>Dial in exactly what you want via preferences</li>
           <li>Swipe on highly curated, visual recommendations</li>
@@ -249,73 +147,98 @@
     </div>
   </section>
 
-  <!-- SCENARIOS -->
-  <section class="section wrap">
-    <span class="label" data-reveal>Planning scenarios</span>
-    <h2 class="h-display h-md" data-reveal style="margin:.9rem 0 3rem">Built for the messy middle<br>of trip planning</h2>
-    <div class="scen" data-stagger>
-      <div class="scen-card"><div class="emo">🧑‍🤝‍🧑</div><h3>Group trips</h3><p>When the group chat stalls, everyone keeps choosing on their own time by swiping the same trip options.</p></div>
-      <div class="scen-card"><div class="emo">🗺️</div><h3>Map-first planning</h3><p>Saved spots plot onto a map so you see where restaurants, attractions, hotels and nightlife fit into the day.</p></div>
-      <div class="scen-card"><div class="emo">🎛️</div><h3>Personalized decks</h3><p>Preference controls shape the deck around the categories and sub-vibes you actually care about.</p></div>
+  <!-- FEATURE 4: scenarios -->
+  <section class="fe fe4" data-chapter="field" aria-labelledby="fe4-title">
+    <h2 class="t-head" id="fe4-title" data-reveal="lines">Built for the messy middle of trip planning</h2>
+    <div class="scen" data-reveal-group>
+      <article class="scen__c scen__c--a" style="--hue:var(--teal)" data-reveal>
+        <h3>Group trips</h3>
+        <p>When the group chat stalls, everyone keeps choosing on their own time by swiping the same trip options.</p>
+      </article>
+      <article class="scen__c scen__c--b" style="--hue:var(--amber)" data-reveal>
+        <h3>Map-first planning</h3>
+        <p>Saved spots plot onto a map so you see where restaurants, attractions, hotels and nightlife fit into the day.</p>
+      </article>
+      <article class="scen__c scen__c--c" style="--hue:var(--magenta)" data-reveal>
+        <h3>Personalized decks</h3>
+        <p>Preference controls shape the deck around the categories and sub-vibes you actually care about.</p>
+      </article>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section class="section wrap">
-    <div style="text-align:center;margin-bottom:3rem">
-      <span class="label no-dash" data-reveal style="justify-content:center">Quick answers</span>
-      <h2 class="h-display h-md" data-reveal style="margin-top:.8rem">FAQ</h2>
+  <section class="faq" data-chapter="night" aria-labelledby="faq-title">
+    <div class="faq__head" data-reveal-group>
+      <h2 class="t-head" id="faq-title" data-reveal>FAQ</h2>
+      <p class="t-lead" data-reveal>Quick answers</p>
     </div>
-    <div class="faq" data-reveal>
-      <div class="faq-item"><button class="faq-q">What is NomadSwipe?<span class="pm">+</span></button><div class="faq-a"><p>A swipe-based travel planning app that helps you discover restaurants, attractions, hotels and nightlife based on your preferences — then maps everything you save.</p></div></div>
-      <div class="faq-item"><button class="faq-q">Who is it for?<span class="pm">+</span></button><div class="faq-a"><p>Travelers and groups who want to make trip decisions faster — without juggling tabs, spreadsheets and group-chat debates.</p></div></div>
-      <div class="faq-item"><button class="faq-q">Where can I get it?<span class="pm">+</span></button><div class="faq-a"><p>The Android listing is linked on this page. The store page is the source of truth for current availability and compatibility.</p></div></div>
-      <div class="faq-item"><button class="faq-q">How does the recommendation model work?<span class="pm">+</span></button><div class="faq-a"><p>You rank categories and choose specific sub-vibes; those stated preferences weight the place deck toward the types of options you want to review.</p></div></div>
-      <div class="faq-item"><button class="faq-q">Who built it?<span class="pm">+</span></button><div class="faq-a"><p>I founded NomadSwipe in September 2025 and handle the complete product as its full-stack developer: strategy, design, React Native app, backend, recommendation logic, maps, releases, maintenance and the site at nomadswipe.com.</p></div></div>
-    </div>
-  </section>
-
-  <!-- DOWNLOAD -->
-  <section class="section dl wrap">
-    <span class="label no-dash" data-reveal style="justify-content:center">See the product</span>
-    <h2 class="h-display h-lg" data-reveal style="margin:1rem 0 .6rem">Review less.<br><span class="org">Map what matters.</span></h2>
-    <p class="lead" data-reveal style="margin:0 auto">Open the Android listing for current availability, compatibility and release information.</p>
-    <div class="store-btns" data-reveal>
-      <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.gchertkov.SwipeNomad" target="_blank" rel="noopener" data-magnetic="0.2">
-        <span class="ic">▶</span><span><small>View listing</small><b>Google Play</b></span>
-      </a>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="footer-grid">
-      <span>© <span data-year>2026</span> Georgi Chertkov</span>
-      <div class="footer-socials">
-        <a href="https://nomadswipe.com" target="_blank" rel="noopener">nomadswipe.com</a>
-        <a href="https://play.google.com/store/apps/details?id=com.gchertkov.SwipeNomad" target="_blank" rel="noopener">Google Play</a>
-        <a href="mailto:georgichertkov@gmail.com">Email</a>
+    <div class="faq__list" data-faq>
+      <div class="faq__item">
+        <h3 class="faq__h"><button class="faq__q" type="button" id="q1" aria-expanded="true" aria-controls="a1"><span>What is NomadSwipe?</span><i class="faq__pm" aria-hidden="true"></i></button></h3>
+        <div class="faq__a" id="a1" role="region" aria-labelledby="q1"><div class="faq__in"><p>A swipe-based travel planning app that helps you discover restaurants, attractions, hotels and nightlife based on your preferences — then maps everything you save.</p></div></div>
       </div>
-      <span>Founder-built in React Native</span>
+      <div class="faq__item">
+        <h3 class="faq__h"><button class="faq__q" type="button" id="q2" aria-expanded="true" aria-controls="a2"><span>Who is it for?</span><i class="faq__pm" aria-hidden="true"></i></button></h3>
+        <div class="faq__a" id="a2" role="region" aria-labelledby="q2"><div class="faq__in"><p>Travelers and groups who want to make trip decisions faster — without juggling tabs, spreadsheets and group-chat debates.</p></div></div>
+      </div>
+      <div class="faq__item">
+        <h3 class="faq__h"><button class="faq__q" type="button" id="q3" aria-expanded="true" aria-controls="a3"><span>Where can I get it?</span><i class="faq__pm" aria-hidden="true"></i></button></h3>
+        <div class="faq__a" id="a3" role="region" aria-labelledby="q3"><div class="faq__in"><p>The Android listing is linked on this page. The store page is the source of truth for current availability and compatibility.</p></div></div>
+      </div>
+      <div class="faq__item">
+        <h3 class="faq__h"><button class="faq__q" type="button" id="q4" aria-expanded="true" aria-controls="a4"><span>How does the recommendation model work?</span><i class="faq__pm" aria-hidden="true"></i></button></h3>
+        <div class="faq__a" id="a4" role="region" aria-labelledby="q4"><div class="faq__in"><p>You rank categories and choose specific sub-vibes; those stated preferences weight the place deck toward the types of options you want to review.</p></div></div>
+      </div>
+      <div class="faq__item">
+        <h3 class="faq__h"><button class="faq__q" type="button" id="q5" aria-expanded="true" aria-controls="a5"><span>Who built it?</span><i class="faq__pm" aria-hidden="true"></i></button></h3>
+        <div class="faq__a" id="a5" role="region" aria-labelledby="q5"><div class="faq__in"><p>I founded NomadSwipe in September 2025 and handle the complete product as its full-stack developer: strategy, design, React Native app, backend, recommendation logic, maps, releases, maintenance and the site at nomadswipe.com.</p></div></div>
+      </div>
     </div>
-    <div class="big-bg-text" style="-webkit-text-stroke-color:rgba(255,106,61,.06)">Nomad</div>
-  </footer>
+  </section>
 
+  <!-- CTA -->
+  <section class="cta" data-chapter="ember" aria-labelledby="cta-title">
+    <h2 class="cta__title" id="cta-title" data-offset-type>Review less.<br>Map what matters.</h2>
+    <div class="cta__base">
+      <p class="cta__note">Open the Android listing for current availability, compatibility and release information.</p>
+      <div class="cta__act">
+        <a class="btn" href="https://play.google.com/store/apps/details?id=com.gchertkov.SwipeNomad" target="_blank" rel="noopener" data-magnetic><span class="btn__label" data-roll>View listing on Google Play</span><span class="btn__arr btn__arr--ne" aria-hidden="true">↗</span></a>
+        <a class="ns-link link-u" href="https://nomadswipe.com" target="_blank" rel="noopener" data-roll>nomadswipe.com</a>
+      </div>
+    </div>
+  </section>
 </main>
 
-<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
-<script src="assets/js/shared.js"></script>
-<script src="assets/js/swipe.js"></script>
-<script>
-  /* faq accordion */
-  document.querySelectorAll('.faq-q').forEach(q=>{
-    q.addEventListener('click',()=>{
-      const item=q.parentElement, a=item.querySelector('.faq-a'), open=item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(o=>{o.classList.remove('open');o.querySelector('.faq-a').style.maxHeight='0'});
-      if(!open){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}
-    });
-  });
-  /* animate engine bars when visible */
-  new IntersectionObserver((en,obs)=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}})},{threshold:.3}).observe(document.getElementById('engineBars'));
-</script>
+<footer class="foot" data-chapter="night">
+  <div class="bands bands--foot" aria-hidden="true"><div class="band band--lime" style="--dur:48s"><div class="band__group">georgichertkov@gmail.com <svg class="band__sun" aria-hidden="true"></svg> LinkedIn / georgichertkov <svg class="band__sun" aria-hidden="true"></svg> Tucson — Remote <svg class="band__sun" aria-hidden="true"></svg></div></div></div>
+  <div class="foot__row">
+    <p>© <span data-year>2026</span> Georgi Chertkov</p>
+    <ul class="foot__links">
+      <li><a class="link-u" href="https://www.linkedin.com/in/georgichertkov/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a class="link-u" href="mailto:georgichertkov@gmail.com">Email</a></li>
+      <li><a class="link-u" href="https://www.offsetmap.com" target="_blank" rel="noopener">OffsetMap</a></li>
+      <li><a class="link-u" href="https://nomadswipe.com" target="_blank" rel="noopener">NomadSwipe</a></li>
+    </ul>
+    <p>Tucson <span data-clock></span> · <span data-sunline></span></p>
+  </div>
+  <p class="foot__name" aria-hidden="true">Georgi Chertkov</p>
+  <p class="foot__credits"><span>Deck photos:</span>
+    <span class="cr"><a class="link-u" href="https://commons.wikimedia.org/w/index.php?curid=179241179" target="_blank" rel="noopener">“Golden Tiki Las Vegas”</a> by Joseph Gage, <a class="link-u" href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a></span>
+    <span class="cr"><a class="link-u" href="https://commons.wikimedia.org/w/index.php?curid=107884689" target="_blank" rel="noopener">“Neon Museum - Las Vegas Club”</a> by Mobilus In Mobili, <a class="link-u" href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a></span>
+    <span class="cr"><a class="link-u" href="https://commons.wikimedia.org/wiki/File:Hard_Rock_Hotel_and_Casino_-_Las_Vegas_02.jpg" target="_blank" rel="noopener">“Hard Rock Hotel and Casino - Las Vegas 02”</a> by Farragutful, <a class="link-u" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></span>
+    <span class="cr"><a class="link-u" href="https://commons.wikimedia.org/w/index.php?curid=19271123" target="_blank" rel="noopener">“Fremont Street Experience, Las Vegas NV”</a> by John Phelan, <a class="link-u" href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a></span>
+    <span class="cr"><a class="link-u" href="https://commons.wikimedia.org/w/index.php?curid=77628023" target="_blank" rel="noopener">“View of Calico Hills at Red Rock Canyon National Conservation Area from Scenic Loop Drive”</a> by Frank Schulenburg, <a class="link-u" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></span>
+    <span class="cr"><a class="link-u" href="https://commons.wikimedia.org/w/index.php?curid=9761332" target="_blank" rel="noopener">“Bellagio fountain show 2010 las vegas”</a> by chensiyuan, <a class="link-u" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.</span>
+  <span>All via Wikimedia Commons, cropped and resized.</span> <span>They show the places named in the sample deck.</span></p>
+</footer>
+
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="assets/js/sun.js" defer></script>
+<script src="assets/js/shared.js" defer></script>
+<script src="assets/js/topo2d.js" defer></script>
+<script src="assets/js/swipe.js" defer></script>
+<script src="assets/js/nomadswipe.js" defer></script>
 </body>
 </html>
